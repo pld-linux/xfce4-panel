@@ -40,7 +40,7 @@ Summary(pl):	Pliki nag³ówkowe do budowania wtyczek panelu Xfce
 Group:		Development/Libraries
 Requires:	libxfcegui4-devel >= %{version}
 Requires:	libxml2-devel >= 2.4.0
-Requires:	%{name} = %{version}-%{release}
+# doesn't require base
 
 %description devel
 Header files for building Xfce panel plugins.
