@@ -2,31 +2,31 @@
 # TODO:
 # - check the icon & the desktop file
 #
-%define		_snap 20040806
+%define		_snap 20040813
 #
 Summary:	Next generation panel for XFce
 Summary(pl):	Panel nowej generacji dla XFce
 Name:		xfce4-panel
-Version:	4.2.0
+Version:	4.1.7
 Release:	0.%{_snap}.1
 License:	GPL
 Group:		X11/Applications
 Source0:	http://ep09.pld-linux.org/~havner/xfce4/%{name}-%{_snap}.tar.bz2
-# Source0-md5:	e59983ea4e19101b6488e25a59cdcf2b
+# Source0-md5:	e302b054bd2b13cb6a02ffaed5759640
 URL:		http://www.xfce.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	intltool
 BuildRequires:	libtool
-BuildRequires:	libxfce4mcs-devel >= %{version}
-BuildRequires:	libxfcegui4-devel >= %{version}
+BuildRequires:	libxfce4mcs-devel >= 4.1.0
+BuildRequires:	libxfcegui4-devel >= 4.1.19
 BuildRequires:	libxml2-devel >= 2.4.0
 BuildRequires:	pkgconfig >= 0.9.0
-BuildRequires:	xfce-mcs-manager-devel >= %{version}
-Requires:	libxfce4mcs >= %{version}
-Requires:	libxfcegui4 >= %{version}
+BuildRequires:	xfce-mcs-manager-devel 4.1.0
+Requires:	libxfce4mcs >= 4.1.0
+Requires:	libxfcegui4 >= 4.1.19
 Requires:	libxml2 >= 2.4.0
-Requires:	xfce-mcs-manager >= %{version}
+Requires:	xfce-mcs-manager 4.1.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -39,7 +39,7 @@ xfce4-panel to panel dla ¶rodowiska XFce.
 Summary:	Header files for building XFce panel plugins
 Summary(pl):	Pliki nag³ówkowe do budowania wtyczek panelu XFce
 Group:		Development/Libraries
-Requires:	libxfcegui4-devel >= 4.0.0
+Requires:	libxfcegui4-devel >= 4.1.19
 Requires:	libxml2-devel >= 2.4.0
 # doesn't require base
 
@@ -105,9 +105,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_iconsdir}/hicolor/*/*/*
 
 %docdir %{_datadir}/xfce4/doc
-%{_datadir}/xfce4/doc/C
-%lang(fr) %{_datadir}/xfce4/doc/fr
-%lang(it) %{_datadir}/xfce4/doc/it
+%{_datadir}/xfce4/doc/C/*
+%lang(fr) %{_datadir}/xfce4/doc/fr/*
+%lang(it) %{_datadir}/xfce4/doc/it/*
 
 %files devel
 %defattr(644,root,root,755)
