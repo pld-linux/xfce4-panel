@@ -25,6 +25,7 @@ Requires:	libxfce4mcs >= 4.1.91
 Requires:	libxfcegui4 >= 4.1.91
 Requires:	libxml2 >= 2.4.0
 Requires:	xfce-mcs-manager >= 4.1.91
+Obsoletes:	xfce4-themes
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
