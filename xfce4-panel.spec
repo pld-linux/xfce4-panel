@@ -1,18 +1,15 @@
 #
 # TODO:
 # - check the icon & the desktop file
-#
-%define		_snap 20040816
-#
 Summary:	Next generation panel for XFce
 Summary(pl):	Panel nowej generacji dla XFce
 Name:		xfce4-panel
-Version:	4.1.7
-Release:	0.%{_snap}.1
+Version:	4.1.90
+Release:	0.1
 License:	GPL
 Group:		X11/Applications
-Source0:	http://ep09.pld-linux.org/~havner/xfce4/%{name}-%{_snap}.tar.bz2
-# Source0-md5:	1be5b25189554b797e796eb605c14a9d
+Source0:	ftp://ftp.berlios.de/pub/xfce-goodies/%{version}/%{name}-%{version}.tar.gz
+# Source0-md5:	2a99d50d37a04f1d67c89886c7a509d5
 URL:		http://www.xfce.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -50,7 +47,7 @@ Header files for building XFce panel plugins.
 Pliki nag³ówkowe do budowania wtyczek panelu XFce.
 
 %prep
-%setup -q -n %{name}
+%setup -q
 
 %build
 glib-gettextize --copy --force
@@ -85,16 +82,21 @@ rm -rf $RPM_BUILD_ROOT
 %doc AUTHORS ChangeLog README TODO
 %attr(755,root,root) %{_bindir}/*
 
-%config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/xfce4/xfce4rc
-%lang(ar) %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/xfce4/xfce4rc.ar
-%lang(az) %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/xfce4/xfce4rc.az
-%lang(ca) %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/xfce4/xfce4rc.ca
-%lang(hu) %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/xfce4/xfce4rc.hu
-%lang(it) %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/xfce4/xfce4rc.it
-%lang(ms) %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/xfce4/xfce4rc.ms
-%lang(nl) %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/xfce4/xfce4rc.nl
-%lang(ro) %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/xfce4/xfce4rc.ro
-%lang(vi) %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/xfce4/xfce4rc.vi
+%config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/xdg/xfce4/panel/contents.xml
+%lang(ar) %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/xdg/xfce4/panel/contents.xml.ar
+%lang(az) %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/xdg/xfce4/panel/contents.xml.az
+%lang(ca) %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/xdg/xfce4/panel/contents.xml.ca
+%lang(eu) %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/xdg/xfce4/panel/contents.xml.eu
+%lang(he) %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/xdg/xfce4/panel/contents.xml.he
+%lang(hu) %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/xdg/xfce4/panel/contents.xml.hu
+%lang(it) %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/xdg/xfce4/panel/contents.xml.it
+%lang(ms) %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/xdg/xfce4/panel/contents.xml.ms
+%lang(nl) %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/xdg/xfce4/panel/contents.xml.nl
+%lang(ro) %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/xdg/xfce4/panel/contents.xml.ro
+%lang(ru) %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/xdg/xfce4/panel/contents.xml.ru
+%lang(sk) %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/xdg/xfce4/panel/contents.xml.sk
+%lang(vi) %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/xdg/xfce4/panel/contents.xml.vi
+%lang(zh_TW) %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/xdg/xfce4/panel/contents.xml.zh_TW
 
 %attr(755,root,root) %{_libdir}/xfce4/mcs-plugins/*.so
 %dir %{_libdir}/xfce4/panel-plugins
