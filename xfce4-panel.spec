@@ -72,9 +72,11 @@ rm -rf $RPM_BUILD_ROOT
 %doc AUTHORS ChangeLog README TODO
 %attr(755,root,root) %{_bindir}/*
 %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/xfce4/xfce4rc
+%lang(ar) %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/xfce4/xfce4rc.ar
 %lang(az) %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/xfce4/xfce4rc.az
 %lang(ca) %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/xfce4/xfce4rc.ca
 %lang(hu) %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/xfce4/xfce4rc.hu
+%lang(it) %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/xfce4/xfce4rc.it
 %lang(nl) %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/xfce4/xfce4rc.nl
 %lang(vi) %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/xfce4/xfce4rc.vi
 %attr(755,root,root) %{_libdir}/xfce4/mcs-plugins/*.so
@@ -84,6 +86,8 @@ rm -rf $RPM_BUILD_ROOT
 %docdir %{_datadir}/xfce4/doc
 %{_datadir}/xfce4/doc/C/*.html
 %{_datadir}/xfce4/doc/C/images/*
+%lang(fr) %{_datadir}/xfce4/doc/fr/*.html
+%lang(fr) %{_datadir}/xfce4/doc/fr/images/*
 
 %files devel
 %defattr(644,root,root,755)
