@@ -93,12 +93,12 @@ rm -rf $RPM_BUILD_ROOT
 %lang(ca) %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/xdg/xfce4/panel/contents.xml.ca
 %lang(da) %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/xdg/xfce4/panel/contents.xml.da
 %lang(eu) %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/xdg/xfce4/panel/contents.xml.eu
+%lang(fi) %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/xdg/xfce4/panel/contents.xml.fi
 %lang(fr) %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/xdg/xfce4/panel/contents.xml.fr
-%lang(fr) %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/xdg/xfce4/panel/contents.xml.fi
 %lang(he) %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/xdg/xfce4/panel/contents.xml.he
 %lang(hu) %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/xdg/xfce4/panel/contents.xml.hu
 %lang(it) %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/xdg/xfce4/panel/contents.xml.it
-%lang(fr) %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/xdg/xfce4/panel/contents.xml.ja
+%lang(ja) %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/xdg/xfce4/panel/contents.xml.ja
 %lang(ko) %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/xdg/xfce4/panel/contents.xml.ko
 %lang(lt) %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/xdg/xfce4/panel/contents.xml.lt
 %lang(ms) %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/xdg/xfce4/panel/contents.xml.ms
@@ -108,7 +108,7 @@ rm -rf $RPM_BUILD_ROOT
 %lang(sk) %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/xdg/xfce4/panel/contents.xml.sk
 %lang(tr) %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/xdg/xfce4/panel/contents.xml.tr
 %lang(vi) %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/xdg/xfce4/panel/contents.xml.vi
-%lang(fr) %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/xdg/xfce4/panel/contents.xml.zh_CN
+%lang(zh_CN) %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/xdg/xfce4/panel/contents.xml.zh_CN
 %lang(zh_TW) %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/xdg/xfce4/panel/contents.xml.zh_TW
 
 %attr(755,root,root) %{_libdir}/xfce4/mcs-plugins/*.so
