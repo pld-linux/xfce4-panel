@@ -4,12 +4,12 @@
 Summary:	Next generation panel for Xfce
 Summary(pl):	Panel nowej generacji dla Xfce
 Name:		xfce4-panel
-Version:	4.1.99.2
+Version:	4.1.99.3
 Release:	1
 License:	GPL
 Group:		X11/Applications
 Source0:	ftp://ftp.berlios.de/pub/xfce-goodies/%{version}/%{name}-%{version}.tar.gz
-# Source0-md5:	a56ff2ea330374d1dc867813bc7863f3
+# Source0-md5:	ee8c4528cfa9092917fe724b30b2cde5
 Patch0:		%{name}-locale-names.patch
 URL:		http://www.xfce.org/
 BuildRequires:	autoconf >= 2.50
