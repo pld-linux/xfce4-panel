@@ -2,17 +2,17 @@
 # TODO:
 # - check the icon & the desktop file
 #
-%define		snap 20040616
+%define		_snap 20040806
 #
 Summary:	Next generation panel for XFce
 Summary(pl):	Panel nowej generacji dla XFce
 Name:		xfce4-panel
-Version:	4.1.0
+Version:	4.2.0
 Release:	0.%{snap}.1
 License:	GPL
 Group:		X11/Applications
-Source0:	%{name}-snap-%{snap}.tar.bz2
-# Source0-md5:	01de59957a572a8762c86c43f6c22289
+Source0:	http://ep09.pld-linux.org/~havner/xfce4/%{name}-%{_snap}.tar.bz2
+# Source0-md5:	e59983ea4e19101b6488e25a59cdcf2b
 URL:		http://www.xfce.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -102,11 +102,12 @@ rm -rf $RPM_BUILD_ROOT
 %{_iconsdir}/hicolor/48x48/apps/xfce-mail.png
 %{_desktopdir}/*.desktop
 %{_datadir}/xfce4/themes
-%{_datadir}/xfce4/icons
+%{_iconsdir}/hicolor/*/*/*
 
 %docdir %{_datadir}/xfce4/doc
 %{_datadir}/xfce4/doc/C
 %lang(fr) %{_datadir}/xfce4/doc/fr
+%lang(it) %{_datadir}/xfce4/doc/it
 
 %files devel
 %defattr(644,root,root,755)
