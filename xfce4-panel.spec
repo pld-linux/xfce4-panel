@@ -1,23 +1,23 @@
 Summary: 	Next generation panel for xfce
 Summary(pl):	Panel nowej generacji dla xfce
 Name: 		xfce4-panel
-Version: 	3.91.0
-Release: 	0.1
+Version: 	3.99.2
+Release: 	1
 License:	GPL
 Group: 		X11/Applications
-Source0: 	http://dl.sourceforge.net/xfce/%{name}-%{version}.tar.gz
-# Source0-md5:	04b4212b5aa4374f4846a918ce67fef1
+Source0: 	http://linux.imp.mx/xfce4/rc2/xfce4-rc2/src/%{name}-%{version}.tar.gz
+# Source0-md5:	b8399df81f1ca8fae388e5e17acae6e6
 URL: 		http://www.xfce.org/
 BuildRequires:	intltool
-BuildRequires:	libxfce4mcs-devel >= 0.0.3
-BuildRequires: 	libxfcegui4-devel >= 0.0.17
+BuildRequires:	libxfce4mcs-devel >= 3.99.2
+BuildRequires: 	libxfcegui4-devel >= 3.99.2
 BuildRequires: 	libxml2-devel >= 2.4.0
 BuildRequires:	pkgconfig >= 0.9.0
-BuildRequires:	xfce-mcs-manager-devel >= 0.2.0
-Requires:	libxfce4mcs >= 0.0.3
-Requires:	libxfcegui4 >= 0.0.17
+BuildRequires:	xfce-mcs-manager-devel >= 3.99.2
+Requires:	libxfce4mcs >= 3.99.2
+Requires:	libxfcegui4 >= 3.99.2
 Requires:	libxml2 >= 2.4.0
-Requires:	xfce-mcs-manager >= 0.2.0
+Requires:	xfce-mcs-manager >= 3.99.2
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
