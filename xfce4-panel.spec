@@ -1,8 +1,8 @@
 #
 # TODO:
 # - check the icon & the desktop file
-Summary:	Next generation panel for XFce
-Summary(pl):	Panel nowej generacji dla XFce
+Summary:	Next generation panel for Xfce
+Summary(pl):	Panel nowej generacji dla Xfce
 Name:		xfce4-panel
 Version:	4.1.99.2
 Release:	1
@@ -29,24 +29,24 @@ Obsoletes:	xfce4-themes
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
-xfce4-panel is the panel for the XFce desktop environment.
+xfce4-panel is the panel for the Xfce desktop environment.
 
 %description -l pl
-xfce4-panel to panel dla ¶rodowiska XFce.
+xfce4-panel to panel dla ¶rodowiska Xfce.
 
 %package devel
-Summary:	Header files for building XFce panel plugins
-Summary(pl):	Pliki nag³ówkowe do budowania wtyczek panelu XFce
+Summary:	Header files for building Xfce panel plugins
+Summary(pl):	Pliki nag³ówkowe do budowania wtyczek panelu Xfce
 Group:		Development/Libraries
 Requires:	libxfcegui4-devel >= 4.1.91
 Requires:	libxml2-devel >= 2.4.0
 # doesn't require base
 
 %description devel
-Header files for building XFce panel plugins.
+Header files for building Xfce panel plugins.
 
 %description devel -l pl
-Pliki nag³ówkowe do budowania wtyczek panelu XFce.
+Pliki nag³ówkowe do budowania wtyczek panelu Xfce.
 
 %prep
 %setup -q
