@@ -16,6 +16,7 @@ Source0:	%{name}-snap-%{snap}.tar.bz2
 URL:		http://www.xfce.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
+BuildRequires:	intltool
 BuildRequires:	libtool
 BuildRequires:	libxfce4mcs-devel >= %{version}
 BuildRequires:	libxfcegui4-devel >= %{version}
@@ -52,6 +53,8 @@ Pliki nag³ówkowe do budowania wtyczek panelu XFce.
 %setup -q -n %{name}
 
 %build
+glib-gettextize --copy --force
+intltoolize --copy --force
 %{__libtoolize}
 %{__aclocal} -I m4
 %{__autoheader}
@@ -93,7 +96,7 @@ rm -rf $RPM_BUILD_ROOT
 %lang(vi) %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/xfce4/xfce4rc.vi
 
 %attr(755,root,root) %{_libdir}/xfce4/mcs-plugins/*.so
-%dir %{_libdir}/xfce4/panel-plugins
+%dir %{_libdir}/xfce4/{panel-plugins,modules}
 %attr(755,root,root) %{_libdir}/xfce4/panel-plugins/*.so
 
 %{_iconsdir}/hicolor/48x48/apps/xfce-mail.png
