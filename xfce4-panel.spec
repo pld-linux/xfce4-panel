@@ -2,23 +2,28 @@ Summary:	Next generation panel for XFce
 Summary(pl):	Panel nowej generacji dla XFce
 Name:		xfce4-panel
 Version:	4.0.5
-Release:	1
+Release:	2
 License:	GPL
 Group:		X11/Applications
 #Source0:	ftp://ftp.berlios.de/pub/xfce-goodies/%{version}/%{name}-%{version}.tar.gz
 Source0:	http://hannelore.f1.fhtw-berlin.de/mirrors/xfce4/xfce-%{version}/src/%{name}-%{version}.tar.gz
 # Source0-md5:	e45c70fd08edf3fadd23571f3151ac5e
+Patch0:		%{name}-locale-names.patch
 URL:		http://www.xfce.org/
+BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	intltool
+BuildRequires:	libtool
 BuildRequires:	libxfce4mcs-devel >= %{version}
 BuildRequires:	libxfcegui4-devel >= %{version}
 BuildRequires:	libxml2-devel >= 2.4.0
 BuildRequires:	pkgconfig >= 0.9.0
+BuildRequires:	startup-notification-devel >= 0.5
 BuildRequires:	xfce-mcs-manager-devel >= %{version}
 Requires:	libxfce4mcs >= %{version}
 Requires:	libxfcegui4 >= %{version}
 Requires:	libxml2 >= 2.4.0
+Requires:	startup-notification >= 0.5
 Requires:	xfce-mcs-manager >= %{version}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -44,12 +49,20 @@ Pliki nag³ówkowe do budowania wtyczek panelu XFce.
 
 %prep
 %setup -q
+%patch0 -p1
+
+mv -f po/{fa_IR,fa}.po
+mv -f po/{no,nb}.po
+mv -f po/{pt_PT,pt}.po
 
 %build
-rm -f missing
 glib-gettextize --copy --force
 intltoolize --copy --force
-cp -f /usr/share/automake/config.sub .
+%{__libtoolize}
+%{__aclocal} -I m4
+%{__autoconf}
+%{__autoheader}
+%{__automake}
 %configure
 
 %{__make}
