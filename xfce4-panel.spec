@@ -15,15 +15,15 @@ BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	intltool
 BuildRequires:	libtool
-BuildRequires:	libxfce4mcs-devel >= 4.1.0
-BuildRequires:	libxfcegui4-devel >= 4.1.19
+BuildRequires:	libxfce4mcs-devel >= 4.1.91
+BuildRequires:	libxfcegui4-devel >= 4.1.91
 BuildRequires:	libxml2-devel >= 2.4.0
 BuildRequires:	pkgconfig >= 0.9.0
-BuildRequires:	xfce-mcs-manager-devel >= 4.1.0
-Requires:	libxfce4mcs >= 4.1.0
-Requires:	libxfcegui4 >= 4.1.19
+BuildRequires:	xfce-mcs-manager-devel >= 4.1.91
+Requires:	libxfce4mcs >= 4.1.91
+Requires:	libxfcegui4 >= 4.1.91
 Requires:	libxml2 >= 2.4.0
-Requires:	xfce-mcs-manager >= 4.1.0
+Requires:	xfce-mcs-manager >= 4.1.91
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -36,7 +36,7 @@ xfce4-panel to panel dla ¶rodowiska XFce.
 Summary:	Header files for building XFce panel plugins
 Summary(pl):	Pliki nag³ówkowe do budowania wtyczek panelu XFce
 Group:		Development/Libraries
-Requires:	libxfcegui4-devel >= 4.1.19
+Requires:	libxfcegui4-devel >= 4.1.91
 Requires:	libxml2-devel >= 2.4.0
 # doesn't require base
 
