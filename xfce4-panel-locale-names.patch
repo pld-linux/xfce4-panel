@@ -1,9 +1,9 @@
---- xfce4-panel-4.2.0/configure.ac.orig	2005-01-09 13:39:09.000000000 +0100
-+++ xfce4-panel-4.2.0/configure.ac	2005-01-17 13:34:58.660091008 +0100
+--- xfce4-panel-4.2.1/configure.ac	2005-03-12 15:19:24.000000000 +0100
++++ fix/xfce4-panel-4.2.1/configure.ac	2005-03-16 02:37:51.237289208 +0100
 @@ -35,8 +35,8 @@
  
  dnl Check for i18n support
- BM_I18N([xfce4-panel], [ar az be bg ca cs de en_GB es es_MX et eu fa fr fi \
+ BM_I18N([xfce4-panel], [ar az be bg ca cs da de en_GB es es_MX et eu fa fr fi \
 -                        gu he hi hu it ja lt ms nl ko nb_NO pa pl pt_BR	\
 -                        pt_PT ro ru sv sk ta tr vi zh_CN zh_TW])
 +                        gu he hi hu it ja lt ms nl ko nb pa pl pt_BR	\
