@@ -2,7 +2,7 @@
 # TODO:
 # - check the icon & the desktop file
 #
-%define		_snap 20040813
+%define		_snap 20040816
 #
 Summary:	Next generation panel for XFce
 Summary(pl):	Panel nowej generacji dla XFce
@@ -12,7 +12,7 @@ Release:	0.%{_snap}.1
 License:	GPL
 Group:		X11/Applications
 Source0:	http://ep09.pld-linux.org/~havner/xfce4/%{name}-%{_snap}.tar.bz2
-# Source0-md5:	e302b054bd2b13cb6a02ffaed5759640
+# Source0-md5:	1be5b25189554b797e796eb605c14a9d
 URL:		http://www.xfce.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
