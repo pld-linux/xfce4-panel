@@ -26,7 +26,7 @@ BuildRequires:	xfce-mcs-manager-devel 4.1.0
 Requires:	libxfce4mcs >= 4.1.0
 Requires:	libxfcegui4 >= 4.1.19
 Requires:	libxml2 >= 2.4.0
-Requires:	xfce-mcs-manager 4.1.0
+Requires:	xfce-mcs-manager >= 4.1.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
