@@ -1,24 +1,42 @@
 Summary: 	Next generation panel for xfce
+Summary(pl):	Panel nowej generacji dla xfce
 Name: 		xfce4-panel
 Version: 	3.90.0
 Release: 	0.1
 License:	GPL
-URL: 		http://www.xfce.org/
-Source0: 	http://belnet.dl.sourceforge.net/sourceforge/xfce/%{name}-%{version}.tar.gz
-# Source0-md5:	8e7531c9924d318f3aa0320223328949
 Group: 		X11/Applications
-Requires:	libxfcegui4
-Requires:	libxfce4mcs
-Requires:	xfce-mcs-manager
-Requires:	libxml2 >= 2.4.0
-BuildRequires: 	libxfcegui4-devel
-BuildRequires:	libxfce4mcs-devel
-BuildRequires:	xfce-mcs-manager-devel
+Source0: 	http://dl.sourceforge.net/xfce/%{name}-%{version}.tar.gz
+# Source0-md5:	8e7531c9924d318f3aa0320223328949
+URL: 		http://www.xfce.org/
+BuildRequires:	intltool
+BuildRequires:	libxfce4mcs-devel >= 0.0.3
+BuildRequires: 	libxfcegui4-devel >= 0.0.17
 BuildRequires: 	libxml2-devel >= 2.4.0
+BuildRequires:	xfce-mcs-manager-devel >= 0.2.0
+Requires:	libxfce4mcs >= 0.0.3
+Requires:	libxfcegui4 >= 0.0.17
+Requires:	libxml2 >= 2.4.0
+Requires:	xfce-mcs-manager >= 0.2.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
-xfce4-panel is the panel for the XFce desktop environment
+xfce4-panel is the panel for the XFce desktop environment.
+
+%description -l pl
+xfce4-panel to panel dla ¶rodowiska XFce.
+
+%package devel
+Summary:	Header files for building xfce panel plugins
+Summary(pl):	Pliki nag³ówkowe do budowania wtyczek panelu xfce
+Group:		Development/Libraries
+Requires:	libxfce4mcs-devel >= 0.0.3
+Requires:	libxfcegui4-devel >= 0.0.17
+
+%description devel
+Header files for building xfce panel plugins.
+
+%description devel -l pl
+Pliki nag³ówkowe do budowania wtyczek panelu xfce.
 
 %prep
 %setup -q
@@ -28,26 +46,37 @@ rm -f missing
 glib-gettextize --copy --force
 intltoolize --copy --force
 %configure
+
 %{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
-%{__make} install DESTDIR=$RPM_BUILD_ROOT
+
+%{__make} install \
+	DESTDIR=$RPM_BUILD_ROOT
+
+rm -f $RPM_BUILD_ROOT%{_libdir}/xfce4/{mcs-plugins,panel-plugins}/*.la
+
+%find_lang %{name}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%files
+%files -f %{name}.lang
 %defattr(644,root,root,755)
-%doc README TODO ChangeLog NEWS NOTES INSTALL COPYING AUTHORS
+%doc AUTHORS ChangeLog README TODO
 %attr(755,root,root) %{_bindir}/*
-%attr(755,root,root) %{_libdir}/xfce4/panel-plugins/*.so
-%{_libdir}/xfce4/panel-plugins/*.la
+# /etc/xfce4 belongs to xfce-utils at the moment
+%config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/xfce4/xfce4rc
 %attr(755,root,root) %{_libdir}/xfce4/mcs-plugins/*.so
-%{_libdir}/xfce4/mcs-plugins/*.la
-%{_libdir}/pkgconfig/
-%{_sysconfdir}/xfce4/
-%{_datadir}/xfce4/doc/
-%{_datadir}/locale/
-%{_includedir}/xfce4/
-%{_datadir}/xfce4/themes/
+%dir %{_libdir}/xfce4/panel-plugins
+%attr(755,root,root) %{_libdir}/xfce4/panel-plugins/*.so
+%{_datadir}/xfce4/themes
+%docdir %{_datadir}/xfce4/doc
+%{_datadir}/xfce4/doc/C/*.html
+%{_datadir}/xfce4/doc/C/images/*
+
+%files devel
+%defattr(644,root,root,755)
+%{_includedir}/xfce4/panel
+%{_libdir}/pkgconfig/*.pc
