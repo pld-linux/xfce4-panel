@@ -1,23 +1,23 @@
 Summary:	Next generation panel for XFce
 Summary(pl):	Panel nowej generacji dla XFce
 Name:		xfce4-panel
-Version:	4.0.0
+Version:	4.0.1
 Release:	1
 License:	GPL
 Group:		X11/Applications
 Source0:	http://www.xfce.org/archive/xfce-%{version}/src/%{name}-%{version}.tar.gz
-# Source0-md5:	7f00b5a9757aa98f18b83e8031dc0035
+# Source0-md5:	a01fa422ba544f8bbb9930d84c904695
 URL:		http://www.xfce.org/
 BuildRequires:	intltool
-BuildRequires:	libxfce4mcs-devel >= 4.0.0
-BuildRequires:	libxfcegui4-devel >= 4.0.0
+BuildRequires:	libxfce4mcs-devel >= %{version}
+BuildRequires:	libxfcegui4-devel >= %{version}
 BuildRequires:	libxml2-devel >= 2.4.0
 BuildRequires:	pkgconfig >= 0.9.0
-BuildRequires:	xfce-mcs-manager-devel >= 4.0.0
-Requires:	libxfce4mcs >= 4.0.0
-Requires:	libxfcegui4 >= 4.0.0
+BuildRequires:	xfce-mcs-manager-devel >= %{version}
+Requires:	libxfce4mcs >= %{version}
+Requires:	libxfcegui4 >= %{version}
 Requires:	libxml2 >= 2.4.0
-Requires:	xfce-mcs-manager >= 4.0.0
+Requires:	xfce-mcs-manager >= %{version}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -27,8 +27,8 @@ xfce4-panel is the panel for the XFce desktop environment.
 xfce4-panel to panel dla ¶rodowiska XFce.
 
 %package devel
-Summary:	Header files for building xfce panel plugins
-Summary(pl):	Pliki nag³ówkowe do budowania wtyczek panelu xfce
+Summary:	Header files for building XFce panel plugins
+Summary(pl):	Pliki nag³ówkowe do budowania wtyczek panelu XFce
 Group:		Development/Libraries
 Requires:	libxfcegui4-devel >= 4.0.0
 Requires:	libxml2-devel >= 2.4.0
