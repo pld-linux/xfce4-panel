@@ -12,7 +12,7 @@ Source0:	ftp://ftp.berlios.de/pub/xfce-goodies/%{version}/%{name}-%{version}.tar
 # Source0-md5:	9b015c063f7cabaac1d325f107a761cf
 Patch0:		%{name}-locale-names.patch
 URL:		http://www.xfce.org/
-BuildRequires:	autoconf
+BuildRequires:	autoconf >= 2.50
 BuildRequires:	automake
 BuildRequires:	intltool
 BuildRequires:	libtool
@@ -87,6 +87,7 @@ rm -rf $RPM_BUILD_ROOT
 %doc AUTHORS ChangeLog README TODO
 %attr(755,root,root) %{_bindir}/*
 
+%dir %{_sysconfdir}/xdg/xfce4/panel
 %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/xdg/xfce4/panel/contents.xml
 %lang(ar) %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/xdg/xfce4/panel/contents.xml.ar
 %lang(az) %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/xdg/xfce4/panel/contents.xml.az
