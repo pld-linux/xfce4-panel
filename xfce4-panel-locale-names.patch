@@ -1,0 +1,13 @@
+--- xfce4-panel-4.0.5/configure.ac.orig	Sun Mar 14 22:55:14 2004
++++ xfce4-panel-4.0.5/configure.ac	Thu Jul  8 13:19:23 2004
+@@ -32,8 +32,8 @@
+ AC_CHECK_FUNCS([sigaction])
+ 
+ dnl Check for i18n support
+-BM_I18N([xfce4-panel], [ar az bg ca cs de es es_MX fa_IR fr fi hi hu it lt ms nl
+-	 ja ko no pl pt_BR pt_PT ru sv ta tr uk vi zh_CN zh_TW])
++BM_I18N([xfce4-panel], [ar az bg ca cs de es es_MX fa fr fi hi hu it lt ms nl
++	 ja ko nb pl pt_BR pt ru sv ta tr uk vi zh_CN zh_TW])
+ 
+ dnl Check for X11 installed
+ BM_LIBX11_REQUIRE
