@@ -1,21 +1,21 @@
 Summary:	Next generation panel for xfce
 Summary(pl):	Panel nowej generacji dla xfce
 Name:		xfce4-panel
-Version:	3.99.2
+Version:	3.99.3
 Release:	1
 License:	GPL
 Group:		X11/Applications
-Source0:	http://linux.imp.mx/xfce4/rc2/xfce4-rc2/src/%{name}-%{version}.tar.gz
-# Source0-md5:	b8399df81f1ca8fae388e5e17acae6e6
+Source0:	http://www.xfce.org/archive/xfce4-rc3/src/%{name}-%{version}.tar.gz
+# Source0-md5:	56eb61e9eb789bcc9e56ba07ce33ecbe
 URL:		http://www.xfce.org/
 BuildRequires:	intltool
 BuildRequires:	libxfce4mcs-devel >= 3.99.2
-BuildRequires:	libxfcegui4-devel >= 3.99.2
+BuildRequires:	libxfcegui4-devel >= 3.99.3
 BuildRequires:	libxml2-devel >= 2.4.0
 BuildRequires:	pkgconfig >= 0.9.0
 BuildRequires:	xfce-mcs-manager-devel >= 3.99.2
 Requires:	libxfce4mcs >= 3.99.2
-Requires:	libxfcegui4 >= 3.99.2
+Requires:	libxfcegui4 >= 3.99.3
 Requires:	libxml2 >= 2.4.0
 Requires:	xfce-mcs-manager >= 3.99.2
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -68,7 +68,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog README TODO
 %attr(755,root,root) %{_bindir}/*
-%config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/xfce4/xfce4rc
+%config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/xfce4/xfce4rc.*
 %attr(755,root,root) %{_libdir}/xfce4/mcs-plugins/*.so
 %dir %{_libdir}/xfce4/panel-plugins
 %attr(755,root,root) %{_libdir}/xfce4/panel-plugins/*.so
