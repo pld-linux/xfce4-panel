@@ -1,13 +1,13 @@
---- xfce4-panel-4.1.99.2/configure.ac.orig	2004-12-06 00:36:12.000000000 +0100
-+++ xfce4-panel-4.1.99.2/configure.ac	2004-12-14 02:17:11.483833240 +0100
+--- xfce4-panel-4.1.99.3/configure.ac.orig	2004-12-14 21:33:20.000000000 +0100
++++ xfce4-panel-4.1.99.3/configure.ac	2004-12-28 10:54:18.523238360 +0100
 @@ -35,8 +35,8 @@
  
  dnl Check for i18n support
  BM_I18N([xfce4-panel], [ar az be bg ca cs de en_GB es es_MX et eu fa fr fi
 -		        gu he hi hu it ja lt ms nl ko nb_NO pa pl pt_BR	
--			pt_PT ru sv sk ta tr vi zh_CN zh_TW])
+-			pt_PT ro ru sv sk ta tr vi zh_CN zh_TW])
 +		        gu he hi hu it ja lt ms nl ko nb pa pl pt_BR	
-+			pt ru sv sk ta tr vi zh_CN zh_TW])
++			pt ro ru sv sk ta tr vi zh_CN zh_TW])
  
  dnl Check for X11 installed
  BM_LIBX11_REQUIRE
