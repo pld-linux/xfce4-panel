@@ -119,7 +119,7 @@ rm -rf $RPM_BUILD_ROOT
 %lang(fr) %{_datadir}/xfce4/doc/fr/*.html
 %lang(fr) %{_datadir}/xfce4/doc/fr/images/*.png
 %lang(it) %{_datadir}/xfce4/doc/it/*.html
-%lang(it) %{_datadir}/xfce4/doc/it/iamges/*.png
+%lang(it) %{_datadir}/xfce4/doc/it/images/*.png
 
 %files devel
 %defattr(644,root,root,755)
