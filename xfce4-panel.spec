@@ -96,7 +96,7 @@ rm -rf $RPM_BUILD_ROOT
 %lang(vi) %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/xfce4/xfce4rc.vi
 
 %attr(755,root,root) %{_libdir}/xfce4/mcs-plugins/*.so
-%dir %{_libdir}/xfce4/{panel-plugins,modules}
+%dir %{_libdir}/xfce4/panel-plugins
 %attr(755,root,root) %{_libdir}/xfce4/panel-plugins/*.so
 
 %{_iconsdir}/hicolor/48x48/apps/xfce-mail.png
