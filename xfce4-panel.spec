@@ -2,12 +2,13 @@ Summary:	Next generation panel for XFce
 Summary(pl):	Panel nowej generacji dla XFce
 Name:		xfce4-panel
 Version:	4.0.3
-Release:	1
+Release:	2
 License:	GPL
 Group:		X11/Applications
 Source0:	http://www.xfce.org/archive/xfce-%{version}/src/%{name}-%{version}.tar.gz
 # Source0-md5:	af8e2bce97c99b1ce23d270320e8c8ce
 URL:		http://www.xfce.org/
+BuildRequires:	automake
 BuildRequires:	intltool
 BuildRequires:	libxfce4mcs-devel >= %{version}
 BuildRequires:	libxfcegui4-devel >= %{version}
@@ -47,6 +48,7 @@ Pliki nag³ówkowe do budowania wtyczek panelu XFce.
 rm -f missing
 glib-gettextize --copy --force
 intltoolize --copy --force
+cp -f /usr/share/automake/config.sub .
 %configure
 
 %{__make}
