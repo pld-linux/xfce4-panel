@@ -2,7 +2,7 @@ Summary:	Next generation panel for xfce
 Summary(pl):	Panel nowej generacji dla xfce
 Name:		xfce4-panel
 Version:	3.99.3
-Release:	1
+Release:	2
 License:	GPL
 Group:		X11/Applications
 Source0:	http://www.xfce.org/archive/xfce4-rc3/src/%{name}-%{version}.tar.gz
@@ -69,6 +69,7 @@ rm -rf $RPM_BUILD_ROOT
 %doc AUTHORS ChangeLog README TODO
 %attr(755,root,root) %{_bindir}/*
 %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/xfce4/xfce4rc.*
+%config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/xfce4/xfce4rc
 %attr(755,root,root) %{_libdir}/xfce4/mcs-plugins/*.so
 %dir %{_libdir}/xfce4/panel-plugins
 %attr(755,root,root) %{_libdir}/xfce4/panel-plugins/*.so
