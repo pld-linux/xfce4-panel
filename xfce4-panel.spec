@@ -4,27 +4,27 @@
 Summary:	Next generation panel for Xfce
 Summary(pl):	Panel nowej generacji dla Xfce
 Name:		xfce4-panel
-Version:	4.2.1
+Version:	4.2.1.1
 Release:	1
 License:	GPL v2
 Group:		X11/Applications
-Source0:        http://hannelore.f1.fhtw-berlin.de/mirrors/xfce4/xfce-%{version}/src/%{name}-%{version}.tar.gz
-# Source0-md5:	4d4f614d2ff3c25ce5da4018e4490fb8
+Source0:	http://www.us.xfce.org/archive/xfce-%{version}/src/%{name}-%{version}.tar.gz
+# Source0-md5:	93986465cd92a9f32de60a44718a249e
 Patch0:		%{name}-locale-names.patch
 URL:		http://www.xfce.org/
 BuildRequires:	autoconf >= 2.50
 BuildRequires:	automake
 BuildRequires:	intltool
 BuildRequires:	libtool
-BuildRequires:	libxfce4mcs-devel >= %{version}
-BuildRequires:	libxfcegui4-devel >= %{version}
+BuildRequires:	libxfce4mcs-devel >= 4.2.1
+BuildRequires:	libxfcegui4-devel >= 4.2.1
 BuildRequires:	libxml2-devel >= 2.4.0
 BuildRequires:	libxslt-progs
 BuildRequires:	pkgconfig >= 1:0.9.0
-BuildRequires:	xfce-mcs-manager-devel >= %{version}
-Requires:	libxfce4mcs >= %{version}
-Requires:	libxfcegui4 >= %{version}
-Requires:	xfce-mcs-manager >= %{version}
+BuildRequires:	xfce-mcs-manager-devel >= 4.2.1
+Requires:	libxfce4mcs >= 4.2.1
+Requires:	libxfcegui4 >= 4.2.1
+Requires:	xfce-mcs-manager >= 4.2.1
 Obsoletes:	xfce4-themes
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -38,7 +38,7 @@ xfce4-panel to panel dla ¶rodowiska Xfce.
 Summary:	Header files for building Xfce panel plugins
 Summary(pl):	Pliki nag³ówkowe do budowania wtyczek panelu Xfce
 Group:		Development/Libraries
-Requires:	libxfcegui4-devel >= %{version}
+Requires:	libxfcegui4-devel >= 4.2.1
 Requires:	libxml2-devel >= 2.4.0
 # doesn't require base
 
