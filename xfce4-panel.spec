@@ -22,6 +22,9 @@ BuildRequires:	libxml2-devel >= 2.4.0
 BuildRequires:	libxslt-progs
 BuildRequires:	pkgconfig >= 1:0.9.0
 BuildRequires:	xfce-mcs-manager-devel >= %{version}
+Requires:	libxfce4mcs >= %{version}
+Requires:	libxfcegui4 >= %{version}
+Requires:	xfce-mcs-manager >= %{version}
 Obsoletes:	xfce4-themes
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
