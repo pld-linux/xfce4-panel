@@ -1,16 +1,22 @@
+#
+# TODO:
+# - check the icon & the desktop file
+#
+%define		snap 20040616
+#
 Summary:	Next generation panel for XFce
 Summary(pl):	Panel nowej generacji dla XFce
 Name:		xfce4-panel
-Version:	4.0.5
-Release:	1
+Version:	4.1.0
+Release:	0.%{snap}.1
 License:	GPL
 Group:		X11/Applications
-#Source0:	ftp://ftp.berlios.de/pub/xfce-goodies/%{version}/%{name}-%{version}.tar.gz
-Source0:	http://hannelore.f1.fhtw-berlin.de/mirrors/xfce4/xfce-%{version}/src/%{name}-%{version}.tar.gz
-# Source0-md5:	e45c70fd08edf3fadd23571f3151ac5e
+Source0:	%{name}-snap-%{snap}.tar.bz2
+# Source0-md5:	01de59957a572a8762c86c43f6c22289
 URL:		http://www.xfce.org/
+BuildRequires:	autoconf
 BuildRequires:	automake
-BuildRequires:	intltool
+BuildRequires:	libtool
 BuildRequires:	libxfce4mcs-devel >= %{version}
 BuildRequires:	libxfcegui4-devel >= %{version}
 BuildRequires:	libxml2-devel >= 2.4.0
@@ -43,19 +49,23 @@ Header files for building XFce panel plugins.
 Pliki nag³ówkowe do budowania wtyczek panelu XFce.
 
 %prep
-%setup -q
+%setup -q -n %{name}
 
 %build
-rm -f missing
-glib-gettextize --copy --force
-intltoolize --copy --force
-cp -f /usr/share/automake/config.sub .
+%{__libtoolize}
+%{__aclocal} -I m4
+%{__autoheader}
+%{__automake}
+%{__autoconf}
 %configure
 
 %{__make}
+%{__make} html
 
 %install
 rm -rf $RPM_BUILD_ROOT
+
+install -d $RPM_BUILD_ROOT%{_datadir}/xfce4/themes
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
@@ -71,19 +81,29 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog README TODO
 %attr(755,root,root) %{_bindir}/*
+
 %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/xfce4/xfce4rc
+%lang(ar) %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/xfce4/xfce4rc.ar
 %lang(az) %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/xfce4/xfce4rc.az
 %lang(ca) %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/xfce4/xfce4rc.ca
 %lang(hu) %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/xfce4/xfce4rc.hu
+%lang(it) %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/xfce4/xfce4rc.it
+%lang(ms) %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/xfce4/xfce4rc.ms
 %lang(nl) %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/xfce4/xfce4rc.nl
 %lang(vi) %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/xfce4/xfce4rc.vi
+
 %attr(755,root,root) %{_libdir}/xfce4/mcs-plugins/*.so
 %dir %{_libdir}/xfce4/panel-plugins
 %attr(755,root,root) %{_libdir}/xfce4/panel-plugins/*.so
+
+%{_iconsdir}/hicolor/48x48/apps/xfce-mail.png
+%{_desktopdir}/*.desktop
 %{_datadir}/xfce4/themes
+%{_datadir}/xfce4/icons
+
 %docdir %{_datadir}/xfce4/doc
-%{_datadir}/xfce4/doc/C/*.html
-%{_datadir}/xfce4/doc/C/images/*
+%{_datadir}/xfce4/doc/C
+%lang(fr) %{_datadir}/xfce4/doc/fr
 
 %files devel
 %defattr(644,root,root,755)
