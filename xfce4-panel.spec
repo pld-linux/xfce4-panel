@@ -93,6 +93,7 @@ rm -rf $RPM_BUILD_ROOT
 %lang(it) %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/xfce4/xfce4rc.it
 %lang(ms) %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/xfce4/xfce4rc.ms
 %lang(nl) %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/xfce4/xfce4rc.nl
+%lang(ro) %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/xfce4/xfce4rc.ro
 %lang(vi) %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/xfce4/xfce4rc.vi
 
 %attr(755,root,root) %{_libdir}/xfce4/mcs-plugins/*.so
