@@ -4,12 +4,12 @@
 Summary:	Next generation panel for Xfce
 Summary(pl):	Panel nowej generacji dla Xfce
 Name:		xfce4-panel
-Version:	4.1.99.3
-Release:	2
+Version:	4.2.0
+Release:	1
 License:	GPL v2
 Group:		X11/Applications
-Source0:	ftp://ftp.berlios.de/pub/xfce-goodies/%{version}/%{name}-%{version}.tar.gz
-# Source0-md5:	ee8c4528cfa9092917fe724b30b2cde5
+Source0:	http://www.us.xfce.org/archive/xfce-%{version}/src/%{name}-%{version}.tar.gz
+# Source0-md5:	92a3ccf964939034b786917a69cd0ba6
 Patch0:		%{name}-locale-names.patch
 URL:		http://www.xfce.org/
 BuildRequires:	autoconf >= 2.50
@@ -97,6 +97,7 @@ rm -rf $RPM_BUILD_ROOT
 %lang(hu) %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/xdg/xfce4/panel/contents.xml.hu
 %lang(it) %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/xdg/xfce4/panel/contents.xml.it
 %lang(ko) %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/xdg/xfce4/panel/contents.xml.ko
+%lang(lt) %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/xdg/xfce4/panel/contents.xml.lt
 %lang(ms) %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/xdg/xfce4/panel/contents.xml.ms
 %lang(nl) %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/xdg/xfce4/panel/contents.xml.nl
 %lang(ro) %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/xdg/xfce4/panel/contents.xml.ro
@@ -117,10 +118,6 @@ rm -rf $RPM_BUILD_ROOT
 %docdir %{_datadir}/xfce4/doc
 %{_datadir}/xfce4/doc/C/*.html
 %{_datadir}/xfce4/doc/C/images/*.png
-%lang(fr) %{_datadir}/xfce4/doc/fr/*.html
-%lang(fr) %{_datadir}/xfce4/doc/fr/images/*.png
-%lang(it) %{_datadir}/xfce4/doc/it/*.html
-%lang(it) %{_datadir}/xfce4/doc/it/images/*.png
 
 %files devel
 %defattr(644,root,root,755)
