@@ -9,15 +9,15 @@ Source0:	http://www.xfce.org/archive/xfce4-rc3/src/%{name}-%{version}.tar.gz
 # Source0-md5:	56eb61e9eb789bcc9e56ba07ce33ecbe
 URL:		http://www.xfce.org/
 BuildRequires:	intltool
-BuildRequires:	libxfce4mcs-devel >= 3.99.2
+BuildRequires:	libxfce4mcs-devel >= 3.99.3
 BuildRequires:	libxfcegui4-devel >= 3.99.3
 BuildRequires:	libxml2-devel >= 2.4.0
 BuildRequires:	pkgconfig >= 0.9.0
-BuildRequires:	xfce-mcs-manager-devel >= 3.99.2
-Requires:	libxfce4mcs >= 3.99.2
+BuildRequires:	xfce-mcs-manager-devel >= 3.99.3
+Requires:	libxfce4mcs >= 3.99.3
 Requires:	libxfcegui4 >= 3.99.3
 Requires:	libxml2 >= 2.4.0
-Requires:	xfce-mcs-manager >= 3.99.2
+Requires:	xfce-mcs-manager >= 3.99.3
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
