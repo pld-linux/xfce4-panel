@@ -38,9 +38,9 @@ xfce4-panel to panel dla ¶rodowiska Xfce.
 Summary:	Header files for building Xfce panel plugins
 Summary(pl):	Pliki nag³ówkowe do budowania wtyczek panelu Xfce
 Group:		Development/Libraries
-Requires:	libxfcegui4-devel >= 4.1.91
+Requires:	libxfcegui4-devel >= %{version}
 Requires:	libxml2-devel >= 2.4.0
-# doesn't require base
+Requires:	%{name} = %{version}-%{release}
 
 %description devel
 Header files for building Xfce panel plugins.
