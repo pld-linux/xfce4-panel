@@ -1,0 +1,390 @@
+Only in xfce4-panel-4.2.1.1: Makefile
+Only in xfce4-panel-4.2.1.1: config.h
+Only in xfce4-panel-4.2.1.1: config.log
+Only in xfce4-panel-4.2.1.1: config.status
+Only in xfce4-panel-4.2.1.1: configure.lineno
+Only in xfce4-panel-4.2.1.1/doc/C: Makefile
+Only in xfce4-panel-4.2.1.1/doc/C/images: Makefile
+Only in xfce4-panel-4.2.1.1/doc: Makefile
+Only in xfce4-panel-4.2.1.1/icons: Makefile
+Only in xfce4-panel-4.2.1.1: libtool
+Only in xfce4-panel-4.2.1.1/panel: .deps
+Only in xfce4-panel-4.2.1.1/panel: Makefile
+diff -rup /xfce4-panel-4.2.1.1/panel/global.h xfce4-panel-4.2.1.1/panel/global.h
+--- /xfce4-panel-4.2.1.1/panel/global.h	Mon Sep 13 22:31:39 2004
++++ xfce4-panel-4.2.1.1/panel/global.h	Tue Apr 12 16:32:42 2005
+@@ -52,7 +52,11 @@ typedef struct _Item Item;
+ typedef struct _Settings Settings;
+ typedef struct _Position Position;
+ 
+-/* panel sides / popup orientation */
++/* handle position */
++enum
++{ BOTH, NONE };
++
++/* panel sides / popup position */
+ enum
+ { LEFT, RIGHT, TOP, BOTTOM };
+ 
+@@ -98,6 +102,7 @@ struct _Settings
+ 
+     int size;
+     int popup_position;
++    int handle_position;
+ 
+     int autohide;
+ 
+diff -rup /xfce4-panel-4.2.1.1/panel/groups.h xfce4-panel-4.2.1.1/panel/groups.h
+--- /xfce4-panel-4.2.1.1/panel/groups.h	Mon Sep 13 22:31:39 2004
++++ xfce4-panel-4.2.1.1/panel/groups.h	Tue Apr 12 13:29:56 2005
+@@ -41,6 +41,7 @@ G_MODULE_IMPORT void groups_set_layer (i
+ 
+ G_MODULE_IMPORT void groups_set_size (int size);
+ G_MODULE_IMPORT void groups_set_popup_position (int position);
++/*G_MODULE_IMPORT void groups_set_handle_position (int position);*/
+ G_MODULE_IMPORT void groups_set_theme (const char *theme);
+ 
+ /* arrow direction */
+diff -rup /xfce4-panel-4.2.1.1/panel/mcs_client.c xfce4-panel-4.2.1.1/panel/mcs_client.c
+--- /xfce4-panel-4.2.1.1/panel/mcs_client.c	Mon Sep 13 22:31:39 2004
++++ xfce4-panel-4.2.1.1/panel/mcs_client.c	Tue Apr 12 13:02:12 2005
+@@ -56,6 +56,7 @@ static gpointer settings_callbacks[] = {
+     panel_set_layer,
+     panel_set_size,
+     panel_set_popup_position,
++    panel_set_handle_position,
+     panel_set_theme,
+     panel_set_autohide,
+ };
+diff -rup /xfce4-panel-4.2.1.1/panel/panel.c xfce4-panel-4.2.1.1/panel/panel.c
+--- /xfce4-panel-4.2.1.1/panel/panel.c	Tue Dec  7 21:02:00 2004
++++ xfce4-panel-4.2.1.1/panel/panel.c	Tue Apr 12 16:56:44 2005
+@@ -1101,11 +1101,9 @@ create_panel_framework (Panel * p)
+ 
+     /* pack the widgets into the main frame */
+     gtk_container_add (GTK_CONTAINER (p->main_frame), p->panel_box);
+-    gtk_box_pack_start (GTK_BOX (p->panel_box), p->handles[LEFT], FALSE,
+-			FALSE, 0);
++    gtk_box_pack_start (GTK_BOX (p->panel_box), p->handles[LEFT], FALSE, FALSE, 0);
+     gtk_box_pack_start (GTK_BOX (p->panel_box), p->group_box, TRUE, TRUE, 0);
+-    gtk_box_pack_start (GTK_BOX (p->panel_box), p->handles[RIGHT], FALSE,
+-			FALSE, 0);
++    gtk_box_pack_start (GTK_BOX (p->panel_box), p->handles[RIGHT], FALSE, FALSE, 0);
+ }
+ 
+ G_MODULE_EXPORT /* EXPORT:panel_cleanup */
+@@ -1171,9 +1169,9 @@ create_panel (void)
+         gtk_widget_realize (p->toplevel);
+ 
+     p->priv->is_created = TRUE;
+-
+     
+     panel_set_position (p);
++    panel_set_handle_position (p->priv->settings.handle_position);
+ 
+     DBG (" ++ position: %d, %d\n", panel.position.x, panel.position.y);
+ 
+@@ -1410,6 +1408,41 @@ panel_set_popup_position (int position)
+     panel_set_size (settings.size);
+ }
+ 
++G_MODULE_EXPORT /* EXPORT:panel_set_handle_position */
++void
++panel_set_handle_position (int position)
++{
++    panel.priv->settings.handle_position = position;
++
++    /* backwards compat */
++    settings = panel.priv->settings;
++
++    if (!panel.priv->is_created)
++	return;
++    switch (position)
++    {
++	case 0:
++		gtk_widget_show_now (panel.handles[LEFT]);
++		gtk_widget_hide (panel.handles[RIGHT]);
++		break;
++	case 1:
++		gtk_widget_hide (panel.handles[LEFT]);
++		gtk_widget_show_now (panel.handles[RIGHT]);
++		break;		
++	case 2:
++		gtk_widget_show_now (panel.handles[LEFT]);
++		gtk_widget_show_now (panel.handles[RIGHT]);
++		break;
++	case 3:
++		gtk_widget_hide (panel.handles[LEFT]);
++		gtk_widget_hide (panel.handles[RIGHT]);
++		break;
++    }
++    /* this is necessary to get the right proportions */
++    panel_set_size (settings.size);
++
++}
++
+ G_MODULE_EXPORT /* EXPORT:panel_set_theme */
+ void
+ panel_set_theme (const char *theme)
+@@ -1436,6 +1469,7 @@ panel_set_settings (void)
+ {
+     panel_set_size (settings.size);
+     panel_set_popup_position (settings.popup_position);
++    panel_set_handle_position (settings.handle_position);
+ 
+     panel_set_theme (settings.theme);
+ }
+@@ -1493,6 +1527,7 @@ init_settings (Panel * p)
+ 
+     p->priv->settings.size = SMALL;
+     p->priv->settings.popup_position = RIGHT;
++    p->priv->settings.handle_position = BOTH;
+ 
+     p->priv->settings.autohide = FALSE;
+ 
+@@ -1553,6 +1588,18 @@ panel_parse_xml (xmlNodePtr node)
+ 	n = (int) strtol (value, NULL, 0);
+ 
+ 	if (n >= LEFT && n <= BOTTOM)
++	    settings.popup_position = n;
++
++	g_free (value);
++    }
++
++    value = xmlGetProp (node, (const xmlChar *) "handleposition");
++
++    if (value)
++    {
++	n = (int) strtol (value, NULL, 0);
++
++	if (n >= LEFT && n <= NONE)
+ 	    settings.popup_position = n;
+ 
+ 	g_free (value);
+diff -rup /xfce4-panel-4.2.1.1/panel/panel.h xfce4-panel-4.2.1.1/panel/panel.h
+--- /xfce4-panel-4.2.1.1/panel/panel.h	Mon Sep 13 22:31:39 2004
++++ xfce4-panel-4.2.1.1/panel/panel.h	Tue Apr 12 13:20:46 2005
+@@ -72,6 +72,7 @@ G_MODULE_IMPORT void panel_set_layer (in
+ 
+ G_MODULE_IMPORT void panel_set_size (int size);
+ G_MODULE_IMPORT void panel_set_popup_position (int position);
++G_MODULE_IMPORT void panel_set_handle_position (int position);
+ G_MODULE_IMPORT void panel_set_theme (const char *theme);
+ 
+ G_MODULE_IMPORT void panel_set_autohide (gboolean hide);
+Only in xfce4-panel-4.2.1.1/panel: xfce4-panel-1.0.pc
+Only in xfce4-panel-4.2.1.1/plugins: Makefile
+Only in xfce4-panel-4.2.1.1/plugins/clock: .deps
+Only in xfce4-panel-4.2.1.1/plugins/clock: Makefile
+Only in xfce4-panel-4.2.1.1/plugins/mailcheck: .deps
+Only in xfce4-panel-4.2.1.1/plugins/mailcheck: Makefile
+Only in xfce4-panel-4.2.1.1/plugins/pager: .deps
+Only in xfce4-panel-4.2.1.1/plugins/pager: Makefile
+Only in xfce4-panel-4.2.1.1/plugins/sample-plugin: .deps
+Only in xfce4-panel-4.2.1.1/plugins/sample-plugin: Makefile
+Only in xfce4-panel-4.2.1.1/plugins/separator: .deps
+Only in xfce4-panel-4.2.1.1/plugins/separator: Makefile
+Only in xfce4-panel-4.2.1.1/plugins/switcher: .deps
+Only in xfce4-panel-4.2.1.1/plugins/switcher: Makefile
+Only in xfce4-panel-4.2.1.1/plugins/systembuttons: .deps
+Only in xfce4-panel-4.2.1.1/plugins/systembuttons: Makefile
+Only in xfce4-panel-4.2.1.1/po: Makefile
+Only in xfce4-panel-4.2.1.1/po: Makefile.in
+Only in xfce4-panel-4.2.1.1/po: POTFILES
+diff -rup /xfce4-panel-4.2.1.1/po/xfce4-panel.pot xfce4-panel-4.2.1.1/po/xfce4-panel.pot
+--- /xfce4-panel-4.2.1.1/po/xfce4-panel.pot	Thu Mar 17 21:45:17 2005
++++ xfce4-panel-4.2.1.1/po/xfce4-panel.pot	Tue Apr 12 13:14:33 2005
+@@ -260,10 +260,26 @@ msgid "Right"
+ msgstr ""
+ 
+ #: settings/xfce_settings_dialog.c:229
+-msgid "Top"
++msgid "Both"
+ msgstr ""
+ 
+ #: settings/xfce_settings_dialog.c:233
++msgid "None"
++msgstr ""
++
++#: settings/xfce_settings_dialog.c:275
++msgid "Left"
++msgstr ""
++
++#: settings/xfce_settings_dialog.c:279
++msgid "Right"
++msgstr ""
++
++#: settings/xfce_settings_dialog.c:283
++msgid "Top"
++msgstr ""
++
++#: settings/xfce_settings_dialog.c:287
+ msgid "Bottom"
+ msgstr ""
+ 
+@@ -277,6 +293,10 @@ msgstr ""
+ 
+ #: settings/xfce_settings_dialog.c:303
+ msgid "Popup position:"
++msgstr ""
++
++#: settings/xfce_settings_dialog.c:373
++msgid "Handle position:"
+ msgstr ""
+ 
+ #: settings/xfce_settings_dialog.c:343
+Only in xfce4-panel-4.2.1.1/settings: .deps
+Only in xfce4-panel-4.2.1.1/settings: Makefile
+diff -rup /xfce4-panel-4.2.1.1/settings/xfce_settings.h xfce4-panel-4.2.1.1/settings/xfce_settings.h
+--- /xfce4-panel-4.2.1.1/settings/xfce_settings.h	Mon Aug 30 14:55:43 2004
++++ xfce4-panel-4.2.1.1/settings/xfce_settings.h	Tue Apr 12 12:43:08 2005
+@@ -29,6 +29,7 @@ enum
+     XFCE_LAYER,
+     XFCE_SIZE,
+     XFCE_POPUPPOSITION,
++    XFCE_HANDLEPOSITION,
+     XFCE_THEME,
+     XFCE_AUTOHIDE,
+     XFCE_OPTIONS
+@@ -39,6 +40,7 @@ static char *xfce_settings_names[] = {
+     "layer",
+     "size",
+     "popupposition",
++    "handleposition",
+     "theme",
+     "autohide",
+ };
+diff -rup /xfce4-panel-4.2.1.1/settings/xfce_settings_dialog.c xfce4-panel-4.2.1.1/settings/xfce_settings_dialog.c
+--- /xfce4-panel-4.2.1.1/settings/xfce_settings_dialog.c	Mon Dec 27 20:05:37 2004
++++ xfce4-panel-4.2.1.1/settings/xfce_settings_dialog.c	Tue Apr 12 18:23:23 2005
+@@ -41,6 +41,8 @@
+ 
+ #define STREQUAL(s1,s2) !strcmp(s1, s2)
+ #define BORDER 6
++enum
++{ BOTH, NONE };
+ 
+ enum
+ { LEFT, RIGHT, TOP, BOTTOM };
+@@ -251,10 +253,64 @@ add_popup_position_menu (GtkWidget * opt
+ 		      G_CALLBACK (popup_position_changed), NULL);
+ }
+ 
++/* handle position */
++
++static void
++handle_position_changed (GtkOptionMenu * menu)
++{
++    int n = gtk_option_menu_get_history (menu);
++
++    mcs_manager_set_int (mcs_manager, xfce_settings_names[XFCE_HANDLEPOSITION],
++			 CHANNEL, n);
++    mcs_manager_notify (mcs_manager, CHANNEL);
++}
++
++static void
++add_handle_position_menu (GtkWidget * option_menu)
++{
++    GtkWidget *menu;
++    GtkWidget *item;
++    McsSetting *setting;
++
++    menu = gtk_menu_new ();
++    
++    item = gtk_menu_item_new_with_label (_("Left"));
++    gtk_widget_show (item);
++    gtk_menu_shell_append (GTK_MENU_SHELL (menu), item);
++
++    item = gtk_menu_item_new_with_label (_("Right"));
++    gtk_widget_show (item);
++    gtk_menu_shell_append (GTK_MENU_SHELL (menu), item);
++
++    item = gtk_menu_item_new_with_label (_("Both"));
++    gtk_widget_show (item);
++    gtk_menu_shell_append (GTK_MENU_SHELL (menu), item);
++
++    item = gtk_menu_item_new_with_label (_("None"));
++    gtk_widget_show (item);
++    gtk_menu_shell_append (GTK_MENU_SHELL (menu), item);
++
++    gtk_option_menu_set_menu (GTK_OPTION_MENU (option_menu), menu);
++
++    setting =
++	mcs_manager_setting_lookup (mcs_manager,
++				    xfce_settings_names[XFCE_HANDLEPOSITION],
++				    CHANNEL);
++
++    if (setting)
++    {
++	gtk_option_menu_set_history (GTK_OPTION_MENU (option_menu),
++				     setting->data.v_int);
++    }
++
++    g_signal_connect (option_menu, "changed",
++		      G_CALLBACK (handle_position_changed), NULL);
++}
++
+ static void
+ add_style_box (GtkBox * box, GtkSizeGroup * sg)
+ {
+-    GtkWidget *vbox, *hbox, *label, *omenu, *popup_menu;
++    GtkWidget *vbox, *hbox, *label, *omenu, *popup_menu, *handle_menu;
+ 
+     vbox = gtk_vbox_new (FALSE, BORDER);
+     gtk_widget_show (vbox);
+@@ -289,6 +345,7 @@ add_style_box (GtkBox * box, GtkSizeGrou
+ 
+     /* needed here already */
+     popup_menu = gtk_option_menu_new ();
++    handle_menu = gtk_option_menu_new();
+     
+     omenu = gtk_option_menu_new ();
+     gtk_widget_show (omenu);
+@@ -309,6 +366,22 @@ add_style_box (GtkBox * box, GtkSizeGrou
+     omenu = popup_menu;
+     gtk_widget_show (omenu);
+     add_popup_position_menu (omenu);
++    gtk_box_pack_start (GTK_BOX (hbox), omenu, TRUE, TRUE, 0);
++
++    /* handle button */
++    hbox = gtk_hbox_new (FALSE, BORDER);
++    gtk_widget_show (hbox);
++    gtk_box_pack_start (GTK_BOX (vbox), hbox, FALSE, TRUE, 0);
++
++    label = gtk_label_new (_("Handle position:"));
++    gtk_misc_set_alignment (GTK_MISC (label), 0, 0.5);
++    gtk_widget_show (label);
++    gtk_size_group_add_widget (sg, label);
++    gtk_box_pack_start (GTK_BOX (hbox), label, FALSE, FALSE, 0);
++
++    omenu = handle_menu;
++    gtk_widget_show (omenu);
++    add_handle_position_menu (omenu);
+     gtk_box_pack_start (GTK_BOX (hbox), omenu, TRUE, TRUE, 0);
+ }
+ 
+diff -rup /xfce4-panel-4.2.1.1/settings/xfce_settings_plugin.c xfce4-panel-4.2.1.1/settings/xfce_settings_plugin.c
+--- /xfce4-panel-4.2.1.1/settings/xfce_settings_plugin.c	Tue Feb  1 08:30:36 2005
++++ xfce4-panel-4.2.1.1/settings/xfce_settings_plugin.c	Tue Apr 12 18:14:15 2005
+@@ -211,6 +211,9 @@ old_xml_start_element (GMarkupParseConte
+ 	    case XFCE_POPUPPOSITION:
+ 		opt.type = MCS_TYPE_INT;
+ 		break;
++	    case XFCE_HANDLEPOSITION:
++		opt.type = MCS_TYPE_INT;
++		break;
+ 	    case XFCE_THEME:
+ 		opt.type = MCS_TYPE_STRING;
+ 		break;
+@@ -323,6 +326,10 @@ xfce_init_options (void)
+ 	    case XFCE_POPUPPOSITION:
+ 		opt.type = MCS_TYPE_INT;
+ 		opt.data.v_int = 1;
++		break;
++	    case XFCE_HANDLEPOSITION:
++		opt.type = MCS_TYPE_INT;
++		opt.data.v_int = 2;
+ 		break;
+ 	    case XFCE_THEME:
+ 		opt.type = MCS_TYPE_STRING;
+Only in xfce4-panel-4.2.1.1: stamp-h1
