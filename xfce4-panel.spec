@@ -5,12 +5,13 @@ Summary:	Next generation panel for Xfce
 Summary(pl):	Panel nowej generacji dla Xfce
 Name:		xfce4-panel
 Version:	4.2.1.1
-Release:	2
+Release:	3
 License:	GPL v2
 Group:		X11/Applications
 Source0:	http://www.us.xfce.org/archive/xfce-%{version}/src/%{name}-%{version}.tar.gz
 # Source0-md5:	93986465cd92a9f32de60a44718a249e
 Patch0:		%{name}-locale-names.patch
+Patch1:		%{name}-handle-option.patch
 URL:		http://www.xfce.org/
 BuildRequires:	autoconf >= 2.50
 BuildRequires:	automake
@@ -53,6 +54,7 @@ Pliki nag³ówkowe do budowania wtyczek panelu Xfce.
 %prep
 %setup -q
 %patch0 -p1
+%patch1 -p1
 
 mv -f po/{nb_NO,nb}.po
 mv -f po/{pt_PT,pt}.po
