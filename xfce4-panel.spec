@@ -4,12 +4,12 @@
 Summary:	Next generation panel for Xfce
 Summary(pl):	Panel nowej generacji dla Xfce
 Name:		xfce4-panel
-Version:	4.2.1.1
-Release:	3
+Version:	4.2.2
+Release:	1
 License:	GPL v2
 Group:		X11/Applications
 Source0:	http://www.us.xfce.org/archive/xfce-%{version}/src/%{name}-%{version}.tar.gz
-# Source0-md5:	93986465cd92a9f32de60a44718a249e
+# Source0-md5:	50699e6c8e4a79f0a4f962e12559c9d0
 Patch0:		%{name}-locale-names.patch
 Patch1:		%{name}-handle-option.patch
 URL:		http://www.xfce.org/
@@ -24,6 +24,7 @@ BuildRequires:	libxml2-devel >= 2.4.0
 BuildRequires:	libxslt-progs
 BuildRequires:	pkgconfig >= 1:0.9.0
 BuildRequires:	xfce-mcs-manager-devel >= 4.2.1
+BuildRequires:	xfce4-dev-tools
 Requires:	hicolor-icon-theme
 Requires:	libxfce4mcs >= 4.2.1
 Requires:	libxfcegui4 >= 4.2.1
@@ -64,7 +65,7 @@ mv -f po/{pt_PT,pt}.po
 glib-gettextize --copy --force
 intltoolize --copy --force
 %{__libtoolize}
-%{__aclocal} -I m4
+%{__aclocal} -I %{_datadir}/xfce4/dev-tools/m4macros
 %{__autoheader}
 %{__automake}
 %{__autoconf}
@@ -127,6 +128,8 @@ rm -rf $RPM_BUILD_ROOT
 %docdir %{_datadir}/xfce4/doc
 %{_datadir}/xfce4/doc/C/*.html
 %{_datadir}/xfce4/doc/C/images/*.png
+
+%lang(fr) %{_datadir}/xfce4/doc/fr
 
 %files devel
 %defattr(644,root,root,755)
