@@ -32,6 +32,7 @@ Requires:	libxfce4mcs >= %{version}
 Requires:	libxfcegui4 >= %{version}
 Requires:	xfce-mcs-manager >= %{version}
 Requires:	xfce4-icon-theme
+Obsoletes:	xfce4-systray
 Obsoletes:	xfce4-themes
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
