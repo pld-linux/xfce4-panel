@@ -5,7 +5,7 @@ Summary:	Next generation panel for Xfce
 Summary(pl):	Panel nowej generacji dla Xfce
 Name:		xfce4-panel
 Version:	4.3.90.1
-Release:	1
+Release:	2
 License:	GPL v2, LGPL v2
 Group:		X11/Applications
 Source0:	http://www.xfce.org/archive/xfce-%{version}/src/%{name}-%{version}.tar.bz2
@@ -92,10 +92,14 @@ rm -f $RPM_BUILD_ROOT%{_libdir}/{,xfce4/{mcs-plugins,panel-plugins}}/*.la
 %clean
 rm -rf $RPM_BUILD_ROOT
 
+%post	-p /sbin/ldconfig
+%postun	-p /sbin/ldconfig
+
 %files -f %{name}.lang
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog HACKING NEWS README README.Kiosk README.Plugins
 %attr(755,root,root) %{_bindir}/*
+%attr(755,root,root) %{_libdir}/libxfce4panel.so.*.*
 
 %dir %{_sysconfdir}/xdg/xfce4/panel
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/xdg/xfce4/panel/panels.xml
@@ -109,16 +113,12 @@ rm -rf $RPM_BUILD_ROOT
 
 %{_datadir}/xfce4/panel-plugins
 %{_iconsdir}/hicolor/*/*/*
-
 %docdir %{_datadir}/xfce4/doc
-#%{_datadir}/xfce4/doc/C/*
-#%lang(fr) %{_datadir}/xfce4/doc/fr/*
-#%lang(he) %{_datadir}/xfce4/doc/he/*
 %docdir %{_datadir}/gtk-doc/html/libxfce4panel
 %{_datadir}/gtk-doc/html/libxfce4panel/*
 
 %files devel
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/libxfce4panel.so*
+%attr(755,root,root) %{_libdir}/libxfce4panel.so
 %{_includedir}/xfce4/libxfce4panel
 %{_pkgconfigdir}/*.pc
