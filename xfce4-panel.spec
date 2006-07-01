@@ -12,6 +12,7 @@ Source0:	http://www.xfce.org/archive/xfce-%{version}/src/%{name}-%{version}.tar.
 # Source0-md5:	332a4beaf3cb6d205f7508a078cf5f75
 Patch0:		%{name}-locale-names.patch
 Patch1:		%{name}-handle-option.patch
+Patch2:		%{name}-configure_ac.patch
 URL:		http://www.xfce.org/
 BuildRequires:	autoconf >= 2.50
 BuildRequires:	automake
@@ -61,6 +62,7 @@ Pliki nag³ówkowe do budowania wtyczek panelu Xfce.
 %setup -q
 %patch0 -p1
 #%patch1 -p1
+%patch2 -p1
 
 mv -f po/{nb_NO,nb}.po
 mv -f po/{pt_PT,pt}.po
