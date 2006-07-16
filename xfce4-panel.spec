@@ -136,6 +136,7 @@ gtk-update-icon-cache -qf %{_datadir}/icons/hicolor
 
 %{_datadir}/xfce4/doc/C/*
 %docdir %{_datadir}/xfce4/doc
+%dir %{_datadir}/gtk-doc/html/libxfce4panel
 %docdir %{_datadir}/gtk-doc/html/libxfce4panel
 %{_datadir}/gtk-doc/html/libxfce4panel/*
 
