@@ -1,11 +1,12 @@
---- xfce4-panel-4.3.90.1/configure.ac.orig	2006-04-16 16:59:44.000000000 +0200
-+++ xfce4-panel-4.3.90.1/configure.ac	2006-04-18 21:55:00.314075000 +0200
-@@ -48,7 +48,7 @@
+diff -aurN xfce4-panel-4.3.90.2.orig/configure.ac xfce4-panel-4.3.90.2/configure.ac
+--- xfce4-panel-4.3.90.2.orig/configure.ac	2006-07-10 14:03:37.000000000 +0200
++++ xfce4-panel-4.3.90.2/configure.ac	2006-07-16 17:10:11.439089951 +0200
+@@ -47,7 +47,7 @@
+ AC_CHECK_FUNCS([sigaction])
  
  dnl Check for i18n support
- XDT_I18N([ar az be bg bn_IN ca cs de el en_GB eo es es_MX et eu fa fi fr
--	  gu he hi hu hy it ja ko lt mr ms nb_NO nl pa pl pt_BR pt_PT ro
-+	  gu he hi hu hy it ja ko lt mr ms nb nl pa pl pt_BR pt ro
- 	  ru sk sv ta tr uk vi zh_CN zh_TW ])
+-XDT_I18N([ar az be bg bn_IN ca cs de el en_GB eo es es_MX et eu fa fi fr gu he hi hu hy it ja ko lt mr ms nb_NO nl pa pl pt_BR pt_PT ro ru sk sv ta tr uk vi zh_CN zh_TW])
++XDT_I18N([ar az be bg bn_IN ca cs de el en_GB eo es es_MX et eu fa fi fr gu he hi hu hy it ja ko lt mr ms nb nl pa pl pt_BR pt ro ru sk sv ta tr uk vi zh_CN zh_TW])
  
  dnl Check for X11 installed
+ XDT_CHECK_LIBX11_REQUIRE
