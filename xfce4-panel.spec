@@ -6,7 +6,7 @@ Summary:	Next generation panel for Xfce
 Summary(pl):	Panel nowej generacji dla Xfce
 Name:		xfce4-panel
 Version:	4.3.90.2
-Release:	1
+Release:	2
 License:	GPL v2, LGPL v2
 Group:		X11/Applications
 Source0:	http://www.xfce.org/archive/xfce-%{version}/src/%{name}-%{version}.tar.bz2
@@ -29,13 +29,15 @@ BuildRequires:	pkgconfig >= 1:0.9.0
 BuildRequires:	xfce-mcs-manager-devel >= %{version}
 BuildRequires:	xfce4-dev-tools >= %{version}
 Requires:	%{name}-libs = %{version}-%{release}
-Requires(post,postun):	gtk+2 >= 2:2.10.0
+Requires(post,postun):	gtk+2 >= 2:2.10.1
 Requires:	hicolor-icon-theme
 Requires:	xfce-mcs-manager >= %{version}
 Requires:	xfce4-icon-theme
 Obsoletes:	xfce4-systray
 Obsoletes:	xfce4-themes
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
+
+%define		no_build_with_as_needed	1
 
 %description
 xfce4-panel is the panel for the Xfce desktop environment.
@@ -85,8 +87,6 @@ mv -f po/{pt_PT,pt}.po
 %{__autoheader}
 %{__automake}
 %{__autoconf}
-# breaks build
-#LDFLAGS="%{rpmldflags} -Wl,--as-needed"
 %configure \
 	--enable-gtk-doc
 
