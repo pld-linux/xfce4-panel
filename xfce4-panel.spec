@@ -37,7 +37,7 @@ Obsoletes:	xfce4-systray
 Obsoletes:	xfce4-themes
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-%define		no_build_with_as_needed	1
+%define		filterout_ld	(-Wl,)?--as-needed
 
 %description
 xfce4-panel is the panel for the Xfce desktop environment.
