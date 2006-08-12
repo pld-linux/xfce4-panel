@@ -45,16 +45,16 @@ xfce4-panel is the panel for the Xfce desktop environment.
 %description -l pl
 xfce4-panel to panel dla ¶rodowiska Xfce.
 
-%package libs                                                                                                       
+%package libs
 Summary:	xfce4panel library
 Summary(pl):	Biblioteka xfce4panel
 Group:		Development/Libraries
 Requires:	libxfce4mcs >= %{version}
 Requires:	libxfcegui4 >= %{version}
-                                                                                                                                            
+
 %description libs
 This package contains xfce4panel library.
-                                                                                                                                            
+
 %description libs -l pl
 Pakiet ten zawiera bibliotekê xfce4panel.
 
