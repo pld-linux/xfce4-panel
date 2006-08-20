@@ -26,6 +26,7 @@ BuildRequires:	libxfcegui4-devel >= %{version}
 BuildRequires:	libxml2-devel >= 1:2.6.26
 BuildRequires:	libxslt-progs
 BuildRequires:	pkgconfig >= 1:0.9.0
+BuildRequires:	rpmbuild(macros) >= 1.315
 BuildRequires:	xfce-mcs-manager-devel >= %{version}
 BuildRequires:	xfce4-dev-tools >= %{version}
 Requires:	%{name}-libs = %{version}-%{release}
