@@ -6,7 +6,7 @@ Summary:	Next generation panel for Xfce
 Summary(pl):	Panel nowej generacji dla Xfce
 Name:		xfce4-panel
 Version:	4.3.99.1
-Release:	1
+Release:	2
 License:	GPL v2, LGPL v2
 Group:		X11/Applications
 Source0:	http://www.xfce.org/archive/xfce-%{version}/src/%{name}-%{version}.tar.bz2
@@ -87,10 +87,10 @@ mv -f po/{pt_PT,pt}.po
 %{__automake}
 %{__autoconf}
 %configure \
-	--enable-gtk-doc
+	--enable-gtk-doc \
+	--with-html-dir=%{_gtkdocdir}
 
 %{__make}
-#%{__make} html
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -137,9 +137,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %{_datadir}/xfce4/doc/C/*
 %docdir %{_datadir}/xfce4/doc
-%dir %{_datadir}/gtk-doc/html/libxfce4panel
-%docdir %{_datadir}/gtk-doc/html/libxfce4panel
-%{_datadir}/gtk-doc/html/libxfce4panel/*
+%{_gtkdocdir}/libxfce4panel
 
 %files libs
 %defattr(644,root,root,755)
