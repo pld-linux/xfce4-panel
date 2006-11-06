@@ -5,12 +5,12 @@
 Summary:	Next generation panel for Xfce
 Summary(pl):	Panel nowej generacji dla Xfce
 Name:		xfce4-panel
-Version:	4.3.99.1
-Release:	2
+Version:	4.3.99.2
+Release:	1
 License:	GPL v2, LGPL v2
 Group:		X11/Applications
 Source0:	http://www.xfce.org/archive/xfce-%{version}/src/%{name}-%{version}.tar.bz2
-# Source0-md5:	8647de295987605161c75650e4554fd8
+# Source0-md5:	53f96a9db5628ac1c629c9e5ecd842e4
 Patch0:		%{name}-locale-names.patch
 URL:		http://www.xfce.org/
 BuildRequires:	autoconf >= 2.50
@@ -31,7 +31,7 @@ BuildRequires:	xfce-mcs-manager-devel >= %{version}
 BuildRequires:	xfce4-dev-tools >= %{version}
 Requires:	%{name}-libs = %{version}-%{release}
 Requires(post,postun):	gtk+2 >= 2:2.10.1
-Requires:	hicolor-icon-theme
+Requires(post,postun):	hicolor-icon-theme
 Requires:	xfce-mcs-manager >= %{version}
 Requires:	xfce4-icon-theme
 Obsoletes:	xfce4-systray
