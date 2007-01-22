@@ -1,16 +1,12 @@
-#
-# TODO:
-# - check the icon & the desktop file
-#
 Summary:	Next generation panel for Xfce
 Summary(pl):	Panel nowej generacji dla Xfce
 Name:		xfce4-panel
-Version:	4.3.99.2
+Version:	4.4.0
 Release:	1
 License:	GPL v2, LGPL v2
 Group:		X11/Applications
 Source0:	http://www.xfce.org/archive/xfce-%{version}/src/%{name}-%{version}.tar.bz2
-# Source0-md5:	53f96a9db5628ac1c629c9e5ecd842e4
+# Source0-md5:	c46925d2df393dba8f16979ba87d4776
 Patch0:		%{name}-locale-names.patch
 URL:		http://www.xfce.org/
 BuildRequires:	autoconf >= 2.50
@@ -30,7 +26,7 @@ BuildRequires:	rpmbuild(macros) >= 1.311
 BuildRequires:	xfce-mcs-manager-devel >= %{version}
 BuildRequires:	xfce4-dev-tools >= %{version}
 Requires:	%{name}-libs = %{version}-%{release}
-Requires(post,postun):	gtk+2 >= 2:2.10.1
+Requires(post,postun):	gtk+2
 Requires(post,postun):	hicolor-icon-theme
 Requires:	xfce-mcs-manager >= %{version}
 Requires:	xfce4-icon-theme
@@ -44,12 +40,22 @@ xfce4-panel is the panel for the Xfce desktop environment.
 %description -l pl
 xfce4-panel to panel dla ¶rodowiska Xfce.
 
+%package apidocs
+Summary:	Xfce panel API documentation
+Summary(pl):	Dokumentacja API panelu Xfce
+Group:		Documentation
+Requires:	gtk-doc-common
+
+%description apidocs
+Xfce panel API documentation.
+
+%description apidocs -l pl
+Dokumentacja API panelu Xfce.
+
 %package libs
 Summary:	xfce4panel library
 Summary(pl):	Biblioteka xfce4panel
 Group:		Development/Libraries
-Requires:	libxfce4mcs >= %{version}
-Requires:	libxfcegui4 >= %{version}
 
 %description libs
 This package contains xfce4panel library.
@@ -88,6 +94,7 @@ mv -f po/{pt_PT,pt}.po
 %{__autoconf}
 %configure \
 	--enable-gtk-doc \
+	--enable-startup-notification \
 	--with-html-dir=%{_gtkdocdir}
 
 %{__make}
@@ -137,6 +144,9 @@ rm -rf $RPM_BUILD_ROOT
 
 %{_datadir}/xfce4/doc/C/*
 %docdir %{_datadir}/xfce4/doc
+
+%files apidocs
+%defattr(644,root,root,755)
 %{_gtkdocdir}/libxfce4panel
 
 %files libs
