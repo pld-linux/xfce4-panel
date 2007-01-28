@@ -25,13 +25,17 @@ BuildRequires:	pkgconfig >= 1:0.9.0
 BuildRequires:	rpmbuild(macros) >= 1.311
 BuildRequires:	xfce-mcs-manager-devel >= %{version}
 BuildRequires:	xfce4-dev-tools >= %{version}
-Requires:	%{name}-libs = %{version}-%{release}
 Requires(post,postun):	gtk+2
 Requires(post,postun):	hicolor-icon-theme
+Requires:	%{name}-libs = %{version}-%{release}
 Requires:	xfce-mcs-manager >= %{version}
 Requires:	xfce4-icon-theme
+Obsoletes:	xfce4-iconbox
+Obsoletes:	xfce4-showdesktop-plugin
 Obsoletes:	xfce4-systray
+Obsoletes:	xfce4-taskbar-plugin
 Obsoletes:	xfce4-themes
+Obsoletes:	xfce4-windowlist-plugin
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
