@@ -3,7 +3,7 @@
 # - check the icon & the desktop file
 #
 Summary:	Next generation panel for Xfce
-Summary(pl):	Panel nowej generacji dla Xfce
+Summary(pl.UTF-8):   Panel nowej generacji dla Xfce
 Name:		xfce4-panel
 Version:	4.3.90.2
 Release:	1
@@ -40,12 +40,12 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %description
 xfce4-panel is the panel for the Xfce desktop environment.
 
-%description -l pl
-xfce4-panel to panel dla ∂rodowiska Xfce.
+%description -l pl.UTF-8
+xfce4-panel to panel dla ≈õrodowiska Xfce.
 
 %package libs                                                                                                                               
 Summary:	xfce4panel library
-Summary(pl):	Biblioteka xfce4panel
+Summary(pl.UTF-8):   Biblioteka xfce4panel
 Group:		Development/Libraries
 Requires:	libxfce4mcs >= %{version}
 Requires:	libxfcegui4 >= %{version}
@@ -53,12 +53,12 @@ Requires:	libxfcegui4 >= %{version}
 %description libs
 This package contains xfce4panel library.
                                                                                                                                             
-%description libs -l pl
-Pakiet ten zawiera bibliotekÍ xfce4panel.
+%description libs -l pl.UTF-8
+Pakiet ten zawiera bibliotekƒô xfce4panel.
 
 %package devel
 Summary:	Header files for building Xfce panel plugins
-Summary(pl):	Pliki nag≥Ûwkowe do budowania wtyczek panelu Xfce
+Summary(pl.UTF-8):   Pliki nag≈Ç√≥wkowe do budowania wtyczek panelu Xfce
 Group:		Development/Libraries
 Requires:	%{name}-libs = %{version}-%{release}
 Requires:	libxfcegui4-devel >= %{version}
@@ -67,8 +67,8 @@ Requires:	libxml2-devel >= 1:2.6.26
 %description devel
 Header files for building Xfce panel plugins.
 
-%description devel -l pl
-Pliki nag≥Ûwkowe do budowania wtyczek panelu Xfce.
+%description devel -l pl.UTF-8
+Pliki nag≈Ç√≥wkowe do budowania wtyczek panelu Xfce.
 
 %prep
 %setup -q
