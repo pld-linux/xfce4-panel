@@ -1,5 +1,5 @@
 Summary:	Next generation panel for Xfce
-Summary(pl.UTF-8):   Panel nowej generacji dla Xfce
+Summary(pl.UTF-8):	Panel nowej generacji dla Xfce
 Name:		xfce4-panel
 Version:	4.4.0
 Release:	1
@@ -46,7 +46,7 @@ xfce4-panel to panel dla środowiska Xfce.
 
 %package apidocs
 Summary:	Xfce panel API documentation
-Summary(pl.UTF-8):   Dokumentacja API panelu Xfce
+Summary(pl.UTF-8):	Dokumentacja API panelu Xfce
 Group:		Documentation
 Requires:	gtk-doc-common
 
@@ -58,7 +58,7 @@ Dokumentacja API panelu Xfce.
 
 %package libs
 Summary:	xfce4panel library
-Summary(pl.UTF-8):   Biblioteka xfce4panel
+Summary(pl.UTF-8):	Biblioteka xfce4panel
 Group:		Development/Libraries
 
 %description libs
@@ -69,7 +69,7 @@ Pakiet ten zawiera bibliotekę xfce4panel.
 
 %package devel
 Summary:	Header files for building Xfce panel plugins
-Summary(pl.UTF-8):   Pliki nagłówkowe do budowania wtyczek panelu Xfce
+Summary(pl.UTF-8):	Pliki nagłówkowe do budowania wtyczek panelu Xfce
 Group:		Development/Libraries
 Requires:	%{name}-libs = %{version}-%{release}
 Requires:	libxfcegui4-devel >= %{version}
