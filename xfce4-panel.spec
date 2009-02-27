@@ -1,34 +1,34 @@
 Summary:	Next generation panel for Xfce
 Summary(pl.UTF-8):	Panel nowej generacji dla Xfce
 Name:		xfce4-panel
-Version:	4.4.3
+Version:	4.6.0
 Release:	1
 License:	GPL v2, LGPL v2
 Group:		X11/Applications
 Source0:	http://www.xfce.org/archive/xfce-%{version}/src/%{name}-%{version}.tar.bz2
-# Source0-md5:	06ef9294062f9bdee4106772e62802f5
-Patch0:		%{name}-locale-names.patch
-URL:		http://www.xfce.org/
+# Source0-md5:	b4c7cce05cc858d11c9dcd4c2f8dbfdb
+URL:		http://www.xfce.org/projects/xfce4-panel/
 BuildRequires:	autoconf >= 2.50
-BuildRequires:	automake
+BuildRequires:	automake >= 1:1.8
 BuildRequires:	docbook-dtd412-xml
 BuildRequires:	docbook-style-xsl
+BuildRequires:	exo-devel >= 0.3.100
 BuildRequires:	gettext-devel
+BuildRequires:	gtk+2-devel >= 2:2.10.6
 BuildRequires:	gtk-doc-automake
 BuildRequires:	intltool >= 0.35.0
 BuildRequires:	libtool
-BuildRequires:	libxfce4mcs-devel >= %{version}
+BuildRequires:	libwnck-devel
+BuildRequires:	libxfce4util-devel >= %{version}
 BuildRequires:	libxfcegui4-devel >= %{version}
-BuildRequires:	libxml2-devel >= 1:2.6.26
 BuildRequires:	libxslt-progs
 BuildRequires:	pkgconfig >= 1:0.9.0
 BuildRequires:	rpmbuild(macros) >= 1.311
-BuildRequires:	xfce-mcs-manager-devel >= %{version}
-BuildRequires:	xfce4-dev-tools >= 4.4.0.1
+BuildRequires:	startup-notification-devel >= 0.8
+BuildRequires:	xfce4-dev-tools >= 4.6.0
 Requires(post,postun):	gtk+2
 Requires(post,postun):	hicolor-icon-theme
 Requires:	%{name}-libs = %{version}-%{release}
-Requires:	xfce-mcs-manager >= %{version}
 Requires:	xfce4-icon-theme
 Obsoletes:	xfce4-iconbox
 Obsoletes:	xfce4-showdesktop-plugin
@@ -59,7 +59,7 @@ Dokumentacja API panelu Xfce.
 %package libs
 Summary:	xfce4panel library
 Summary(pl.UTF-8):	Biblioteka xfce4panel
-Group:		Development/Libraries
+Group:		X11/Development/Libraries
 
 %description libs
 This package contains xfce4panel library.
@@ -70,10 +70,10 @@ Pakiet ten zawiera bibliotekę xfce4panel.
 %package devel
 Summary:	Header files for building Xfce panel plugins
 Summary(pl.UTF-8):	Pliki nagłówkowe do budowania wtyczek panelu Xfce
-Group:		Development/Libraries
+Group:		X11/Development/Libraries
 Requires:	%{name}-libs = %{version}-%{release}
+Requires:	libxfce4util-devel >= %{version}
 Requires:	libxfcegui4-devel >= %{version}
-Requires:	libxml2-devel >= 1:2.6.26
 
 %description devel
 Header files for building Xfce panel plugins.
@@ -83,10 +83,6 @@ Pliki nagłówkowe do budowania wtyczek panelu Xfce.
 
 %prep
 %setup -q
-%patch0 -p1
-
-mv -f po/{nb_NO,nb}.po
-mv -f po/{pt_PT,pt}.po
 
 %build
 %{__glib_gettextize}
@@ -109,7 +105,10 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-rm -f $RPM_BUILD_ROOT%{_libdir}/{,xfce4/{mcs-plugins,panel-plugins}}/*.la
+%{__rm} $RPM_BUILD_ROOT%{_libdir}/xfce4/panel-plugins/*.la
+
+mv $RPM_BUILD_ROOT%{_datadir}/locale/nb{_NO,}
+mv $RPM_BUILD_ROOT%{_datadir}/locale/pt{_PT,}
 
 %find_lang %{name}
 
@@ -127,8 +126,9 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
-%doc AUTHORS ChangeLog HACKING NEWS README README.Kiosk README.Plugins
-%attr(755,root,root) %{_bindir}/*
+%doc AUTHORS ChangeLog HACKING NEWS README
+%attr(755,root,root) %{_bindir}/xfce4-panel
+%attr(755,root,root) %{_bindir}/xfce4-popup-windowlist
 
 %dir %{_sysconfdir}/xdg/xfce4/panel
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/xdg/xfce4/panel/clock-14.rc
@@ -139,9 +139,18 @@ rm -rf $RPM_BUILD_ROOT
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/xdg/xfce4/panel/panels.xml
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/xdg/xfce4/panel/systray-4.rc
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/xdg/xfce4/panel/xfce4-menu-5.rc
+%dir %{_libdir}/xfce4
 %dir %{_libdir}/xfce4/panel-plugins
-%attr(755,root,root) %{_libdir}/xfce4/mcs-plugins/*.so
-%attr(755,root,root) %{_libdir}/xfce4/panel-plugins/*.so
+%attr(755,root,root) %{_libdir}/xfce4/panel-plugins/libactions.so
+%attr(755,root,root) %{_libdir}/xfce4/panel-plugins/libclock.so
+%attr(755,root,root) %{_libdir}/xfce4/panel-plugins/libiconbox.so
+%attr(755,root,root) %{_libdir}/xfce4/panel-plugins/liblauncher.so
+%attr(755,root,root) %{_libdir}/xfce4/panel-plugins/libpager.so
+%attr(755,root,root) %{_libdir}/xfce4/panel-plugins/libseparator.so
+%attr(755,root,root) %{_libdir}/xfce4/panel-plugins/libshowdesktop.so
+%attr(755,root,root) %{_libdir}/xfce4/panel-plugins/libsystray.so
+%attr(755,root,root) %{_libdir}/xfce4/panel-plugins/libtasklist.so
+%attr(755,root,root) %{_libdir}/xfce4/panel-plugins/libwindowlist.so
 %{_datadir}/xfce4/panel-plugins
 %{_iconsdir}/hicolor/*/*/*
 %{_desktopdir}/*.desktop
@@ -156,9 +165,11 @@ rm -rf $RPM_BUILD_ROOT
 %files libs
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libxfce4panel.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libxfce4panel.so.1
 
 %files devel
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libxfce4panel.so
+%{_libdir}/libxfce4panel.la
 %{_includedir}/xfce4/libxfce4panel
-%{_pkgconfigdir}/*.pc
+%{_pkgconfigdir}/libxfce4panel-1.0.pc
