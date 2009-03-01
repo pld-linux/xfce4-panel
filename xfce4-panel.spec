@@ -29,7 +29,10 @@ BuildRequires:	xfce4-dev-tools >= 4.6.0
 Requires(post,postun):	gtk+2
 Requires(post,postun):	hicolor-icon-theme
 Requires:	%{name}-libs = %{version}-%{release}
-Requires:	xfce4-icon-theme
+# NOTE: it's temporary. xfce4-icon-theme has to match XDG specification.
+#       Currently Tango is used as a default icon theme.
+Requires:	tango-icon-theme
+#Requires:	xfce4-icon-theme
 Obsoletes:	xfce4-iconbox
 Obsoletes:	xfce4-showdesktop-plugin
 Obsoletes:	xfce4-systray
