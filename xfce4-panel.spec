@@ -1,18 +1,18 @@
 Summary:	Next generation panel for Xfce
 Summary(pl.UTF-8):	Panel nowej generacji dla Xfce
 Name:		xfce4-panel
-Version:	4.6.0
+Version:	4.6.1
 Release:	1
 License:	GPL v2, LGPL v2
 Group:		X11/Applications
 Source0:	http://www.xfce.org/archive/xfce-%{version}/src/%{name}-%{version}.tar.bz2
-# Source0-md5:	b4c7cce05cc858d11c9dcd4c2f8dbfdb
+# Source0-md5:	73a366b9892152266b465d7d9c35bef4
 URL:		http://www.xfce.org/projects/xfce4-panel/
 BuildRequires:	autoconf >= 2.50
 BuildRequires:	automake >= 1:1.8
 BuildRequires:	docbook-dtd412-xml
 BuildRequires:	docbook-style-xsl
-BuildRequires:	exo-devel >= 0.3.100
+BuildRequires:	exo-devel >= 0.3.101
 BuildRequires:	gettext-devel
 BuildRequires:	gtk+2-devel >= 2:2.10.6
 BuildRequires:	gtk-doc-automake
@@ -109,9 +109,6 @@ rm -rf $RPM_BUILD_ROOT
 	DESTDIR=$RPM_BUILD_ROOT
 
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/xfce4/panel-plugins/*.la
-
-mv $RPM_BUILD_ROOT%{_datadir}/locale/nb{_NO,}
-mv $RPM_BUILD_ROOT%{_datadir}/locale/pt{_PT,}
 
 %find_lang %{name}
 
