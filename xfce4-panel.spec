@@ -88,6 +88,7 @@ Pliki nagłówkowe do budowania wtyczek panelu Xfce.
 %setup -q
 
 %build
+%{__gtkdocize}
 %{__glib_gettextize}
 %{__intltoolize}
 %{__libtoolize}
