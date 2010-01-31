@@ -15,6 +15,7 @@ BuildRequires:	docbook-style-xsl
 BuildRequires:	exo-devel >= 0.3.101
 BuildRequires:	gettext-devel
 BuildRequires:	gtk+2-devel >= 2:2.10.6
+BuildRequires:	gtk-doc
 BuildRequires:	gtk-doc-automake
 BuildRequires:	intltool >= 0.35.0
 BuildRequires:	libtool
