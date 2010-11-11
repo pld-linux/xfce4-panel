@@ -2,7 +2,7 @@ Summary:	Next generation panel for Xfce
 Summary(pl.UTF-8):	Panel nowej generacji dla Xfce
 Name:		xfce4-panel
 Version:	4.6.1
-Release:	4
+Release:	5
 License:	GPL v2, LGPL v2
 Group:		X11/Applications
 Source0:	http://www.xfce.org/archive/xfce-%{version}/src/%{name}-%{version}.tar.bz2
@@ -34,6 +34,7 @@ Requires:	%{name}-libs = %{version}-%{release}
 # NOTE: it's temporary. xfce4-icon-theme has to match XDG specification.
 #       Currently Tango is used as a default icon theme.
 Requires:	tango-icon-theme
+Requires:	xfce4-dirs >= 4.6
 #Requires:	xfce4-icon-theme
 Obsoletes:	xfce4-iconbox
 Obsoletes:	xfce4-showdesktop-plugin
@@ -159,8 +160,8 @@ rm -rf $RPM_BUILD_ROOT
 %{_iconsdir}/hicolor/*/*/*
 %{_desktopdir}/*.desktop
 
-%{_datadir}/xfce4/doc/C/*
-%docdir %{_datadir}/xfce4/doc
+%{_datadir}/xfce4/doc/C/*.html
+%{_datadir}/xfce4/doc/C/images/*.png
 
 %files apidocs
 %defattr(644,root,root,755)
