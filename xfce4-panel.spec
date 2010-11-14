@@ -1,19 +1,19 @@
 Summary:	Next generation panel for Xfce
 Summary(pl.UTF-8):	Panel nowej generacji dla Xfce
 Name:		xfce4-panel
-Version:	4.6.1
-Release:	5
+Version:	4.7.4
+Release:	0.1
 License:	GPL v2, LGPL v2
 Group:		X11/Applications
-Source0:	http://www.xfce.org/archive/xfce-%{version}/src/%{name}-%{version}.tar.bz2
-# Source0-md5:	73a366b9892152266b465d7d9c35bef4
-Patch0:		%{name}-decorations.patch
+Source0:	http://www.xfce.org/archive/xfce/4.8pre1/src/%{name}-%{version}.tar.bz2
+# Source0-md5:	20a9afd50066a2c8a607f90eaec29cfa
 URL:		http://www.xfce.org/projects/xfce4-panel/
 BuildRequires:	autoconf >= 2.50
 BuildRequires:	automake >= 1:1.8
 BuildRequires:	docbook-dtd412-xml
 BuildRequires:	docbook-style-xsl
-BuildRequires:	exo-devel >= 0.3.101
+BuildRequires:	exo-devel >= 0.5.4
+BuildRequires:	garcon-devel >= 0.1.2
 BuildRequires:	gettext-devel
 BuildRequires:	gtk+2-devel >= 2:2.10.6
 BuildRequires:	gtk-doc
@@ -21,8 +21,10 @@ BuildRequires:	gtk-doc-automake
 BuildRequires:	intltool >= 0.35.0
 BuildRequires:	libtool
 BuildRequires:	libwnck-devel
-BuildRequires:	libxfce4util-devel >= %{version}
-BuildRequires:	libxfcegui4-devel >= %{version}
+#BuildRequires:	libxfce4util-devel >= %{version}
+#BuildRequires:	libxfce4ui-devel >= %{version}
+BuildRequires:	libxfce4util-devel >= 4.7.0
+BuildRequires:	libxfce4ui-devel >= 4.7.0
 BuildRequires:	libxslt-progs
 BuildRequires:	pkgconfig >= 1:0.9.0
 BuildRequires:	rpmbuild(macros) >= 1.311
@@ -78,8 +80,10 @@ Summary:	Header files for building Xfce panel plugins
 Summary(pl.UTF-8):	Pliki nagłówkowe do budowania wtyczek panelu Xfce
 Group:		X11/Development/Libraries
 Requires:	%{name}-libs = %{version}-%{release}
-Requires:	libxfce4util-devel >= %{version}
-Requires:	libxfcegui4-devel >= %{version}
+#Requires:	libxfce4util-devel >= %{version}
+#Requires:	libxfce4ui-devel >= %{version}
+Requires:	libxfce4util-devel >= 4.7.0
+Requires:	libxfce4ui-devel >= 4.7.0
 
 %description devel
 Header files for building Xfce panel plugins.
@@ -89,7 +93,6 @@ Pliki nagłówkowe do budowania wtyczek panelu Xfce.
 
 %prep
 %setup -q
-%patch0 -p1
 
 %build
 %{__gtkdocize}
@@ -113,7 +116,7 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-%{__rm} $RPM_BUILD_ROOT%{_libdir}/xfce4/panel-plugins/*.la
+%{__rm} $RPM_BUILD_ROOT%{_libdir}/xfce4/panel/plugins/*.{a,la}
 
 %find_lang %{name}
 
@@ -131,50 +134,46 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
-%doc AUTHORS ChangeLog HACKING NEWS README
+%doc AUTHORS ChangeLog NEWS README
 %attr(755,root,root) %{_bindir}/xfce4-panel
-%attr(755,root,root) %{_bindir}/xfce4-popup-windowlist
+%attr(755,root,root) %{_bindir}/xfce4-popup-applicationsmenu
+%attr(755,root,root) %{_bindir}/xfce4-popup-directorymenu
+%attr(755,root,root) %{_bindir}/xfce4-popup-windowmenu
 
 %dir %{_sysconfdir}/xdg/xfce4/panel
-%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/xdg/xfce4/panel/clock-14.rc
-%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/xdg/xfce4/panel/launcher-7.rc
-%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/xdg/xfce4/panel/launcher-8.rc
-%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/xdg/xfce4/panel/launcher-9.rc
-%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/xdg/xfce4/panel/launcher-10.rc
-%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/xdg/xfce4/panel/panels.xml
-%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/xdg/xfce4/panel/systray-4.rc
-%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/xdg/xfce4/panel/xfce4-menu-5.rc
+%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/xdg/xfce4/panel/default.xml
 %dir %{_libdir}/xfce4
-%dir %{_libdir}/xfce4/panel-plugins
-%attr(755,root,root) %{_libdir}/xfce4/panel-plugins/libactions.so
-%attr(755,root,root) %{_libdir}/xfce4/panel-plugins/libclock.so
-%attr(755,root,root) %{_libdir}/xfce4/panel-plugins/libiconbox.so
-%attr(755,root,root) %{_libdir}/xfce4/panel-plugins/liblauncher.so
-%attr(755,root,root) %{_libdir}/xfce4/panel-plugins/libpager.so
-%attr(755,root,root) %{_libdir}/xfce4/panel-plugins/libseparator.so
-%attr(755,root,root) %{_libdir}/xfce4/panel-plugins/libshowdesktop.so
-%attr(755,root,root) %{_libdir}/xfce4/panel-plugins/libsystray.so
-%attr(755,root,root) %{_libdir}/xfce4/panel-plugins/libtasklist.so
-%attr(755,root,root) %{_libdir}/xfce4/panel-plugins/libwindowlist.so
+%dir %{_libdir}/xfce4/panel
+%attr(755,root,root) %dir %{_libdir}/xfce4/panel/migrate
+%attr(755,root,root) %dir %{_libdir}/xfce4/panel/wrapper
+%dir %{_libdir}/xfce4/panel/plugins
+%attr(755,root,root) %{_libdir}/xfce4/panel/plugins/libactions.so
+%attr(755,root,root) %{_libdir}/xfce4/panel/plugins/libapplicationsmenu.so
+%attr(755,root,root) %{_libdir}/xfce4/panel/plugins/libclock.so
+%attr(755,root,root) %{_libdir}/xfce4/panel/plugins/libdirectorymenu.so
+%attr(755,root,root) %{_libdir}/xfce4/panel/plugins/liblauncher.so
+%attr(755,root,root) %{_libdir}/xfce4/panel/plugins/libpager.so
+%attr(755,root,root) %{_libdir}/xfce4/panel/plugins/libseparator.so
+%attr(755,root,root) %{_libdir}/xfce4/panel/plugins/libshowdesktop.so
+%attr(755,root,root) %{_libdir}/xfce4/panel/plugins/libsystray.so
+%attr(755,root,root) %{_libdir}/xfce4/panel/plugins/libtasklist.so
+%attr(755,root,root) %{_libdir}/xfce4/panel/plugins/libwindowmenu.so
 %{_datadir}/xfce4/panel-plugins
 %{_iconsdir}/hicolor/*/*/*
 %{_desktopdir}/*.desktop
 
-%{_datadir}/xfce4/doc/C/*.html
-%{_datadir}/xfce4/doc/C/images/*.png
-
 %files apidocs
 %defattr(644,root,root,755)
-%{_gtkdocdir}/libxfce4panel
+%{_gtkdocdir}/libxfce4panel-1.0
 
 %files libs
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/libxfce4panel.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libxfce4panel.so.1
+%attr(755,root,root) %{_libdir}/libxfce4panel-1.0.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libxfce4panel-1.0.so.3
 
 %files devel
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/libxfce4panel.so
-%{_libdir}/libxfce4panel.la
-%{_includedir}/xfce4/libxfce4panel
+%attr(755,root,root) %{_libdir}/libxfce4panel-1.0.so
+%{_libdir}/libxfce4panel-1.0.la
+%{_includedir}/xfce4/libxfce4panel-1.0
 %{_pkgconfigdir}/libxfce4panel-1.0.pc
