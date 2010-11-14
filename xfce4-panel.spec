@@ -8,7 +8,6 @@ License:	GPL v2, LGPL v2
 Group:		X11/Applications
 Source0:	http://archive.xfce.org/xfce/%{xfce_version}/src/%{name}-%{version}.tar.bz2
 # Source0-md5:	82f10a42aefca4cc26a6633e7478cc65
-Patch0:		%{name}-decorations.patch
 URL:		http://www.xfce.org/projects/xfce4-panel/
 BuildRequires:	autoconf >= 2.50
 BuildRequires:	automake >= 1:1.8
@@ -90,7 +89,6 @@ Pliki nagłówkowe do budowania wtyczek panelu Xfce.
 
 %prep
 %setup -q
-%patch0 -p1
 
 %build
 %{__gtkdocize}
