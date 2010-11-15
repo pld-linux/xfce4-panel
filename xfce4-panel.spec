@@ -2,14 +2,13 @@ Summary:	Next generation panel for Xfce
 Summary(pl.UTF-8):	Panel nowej generacji dla Xfce
 Name:		xfce4-panel
 Version:	4.7.4
-Release:	0.1
+Release:	0.2
 License:	GPL v2, LGPL v2
 Group:		X11/Applications
 Source0:	http://www.xfce.org/archive/xfce/4.8pre1/src/%{name}-%{version}.tar.bz2
 # Source0-md5:	20a9afd50066a2c8a607f90eaec29cfa
+Patch0:		%{name}-generic-menu.patch
 URL:		http://www.xfce.org/projects/xfce4-panel/
-BuildRequires:	autoconf >= 2.50
-BuildRequires:	automake >= 1:1.8
 BuildRequires:	docbook-dtd412-xml
 BuildRequires:	docbook-style-xsl
 BuildRequires:	exo-devel >= 0.5.4
@@ -19,7 +18,6 @@ BuildRequires:	gtk+2-devel >= 2:2.10.6
 BuildRequires:	gtk-doc
 BuildRequires:	gtk-doc-automake
 BuildRequires:	intltool >= 0.35.0
-BuildRequires:	libtool
 BuildRequires:	libwnck-devel
 #BuildRequires:	libxfce4util-devel >= %{version}
 #BuildRequires:	libxfce4ui-devel >= %{version}
@@ -93,19 +91,11 @@ Pliki nagłówkowe do budowania wtyczek panelu Xfce.
 
 %prep
 %setup -q
+%patch0 -p1
 
 %build
-%{__gtkdocize}
-%{__glib_gettextize}
-%{__intltoolize}
-%{__libtoolize}
-%{__aclocal}
-%{__autoheader}
-%{__automake}
-%{__autoconf}
 %configure \
 	--enable-gtk-doc \
-	--enable-startup-notification \
 	--with-html-dir=%{_gtkdocdir}
 
 %{__make}
