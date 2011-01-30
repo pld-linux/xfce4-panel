@@ -103,6 +103,7 @@ Pliki nagłówkowe do budowania wtyczek panelu Xfce.
 
 %install
 rm -rf $RPM_BUILD_ROOT
+install -d $RPM_BUILD_ROOT%{_datadir}/xfce4/panel-plugins
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
@@ -151,6 +152,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/xfce4/panel/plugins/libtasklist.so
 %attr(755,root,root) %{_libdir}/xfce4/panel/plugins/libwindowmenu.so
 %{_datadir}/xfce4/panel
+%dir %{_datadir}/xfce4/panel-plugins
 %dir %{_datadir}/doc/xfce4-panel
 %{_datadir}/doc/xfce4-panel/README.gtkrc-2.0
 %dir %{_datadir}/doc/xfce4-panel/html
