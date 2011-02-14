@@ -102,7 +102,7 @@ Pliki nagłówkowe do budowania wtyczek panelu Xfce.
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT%{_datadir}/xfce4/panel-plugins
+install -d $RPM_BUILD_ROOT{%{_libdir},%{_datadir}}/xfce4/panel-plugins
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
@@ -139,6 +139,7 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_libdir}/xfce4/panel
 %attr(755,root,root) %{_libdir}/xfce4/panel/migrate
 %attr(755,root,root) %{_libdir}/xfce4/panel/wrapper
+%dir %{_libdir}/xfce4/panel-plugins
 %dir %{_libdir}/xfce4/panel/plugins
 %attr(755,root,root) %{_libdir}/xfce4/panel/plugins/libactions.so
 %attr(755,root,root) %{_libdir}/xfce4/panel/plugins/libapplicationsmenu.so
