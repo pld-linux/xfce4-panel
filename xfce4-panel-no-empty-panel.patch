@@ -1,71 +1,35 @@
 --- xfce4-panel-4.8.6/migrate/main.c~	2011-09-21 20:59:09.000000000 +0200
 +++ xfce4-panel-4.8.6/migrate/main.c	2011-10-24 12:09:17.247228900 +0200
 @@ -50,7 +50,6 @@
-   gint       result;
-   gint       retval = EXIT_SUCCESS;
-   gboolean   default_config_exists;
--  gint       default_response = GTK_RESPONSE_CANCEL;
+   GtkWidget     *button;
+   gint           result;
+   gint           retval = EXIT_SUCCESS;
+-  gint           default_response = GTK_RESPONSE_CANCEL;
+   XfconfChannel *channel;
+   gint           configver;
+   gchar         *filename_46;
+@@ -128,7 +128,6 @@
  
-   /* set translation domain */
-   xfce_textdomain (GETTEXT_PACKAGE, PACKAGE_LOCALE_DIR, "UTF-8");
-@@ -72,14 +71,27 @@
- 
-   /* lookup the old 4.6 config file */
-   file = xfce_resource_lookup (XFCE_RESOURCE_CONFIG, XFCE_46_CONFIG);
-+  default_config_exists = g_file_test (DEFAULT_CONFIG, G_FILE_TEST_IS_REGULAR);
-+  if (file == NULL)
-+    {
-+      /* apply default config */
-+      if (default_config_exists && !migrate_default (DEFAULT_CONFIG, &error))
-+        {
-+          xfce_dialog_show_error (NULL, error, _("Failed to load the default configuration"));
-+          g_error_free (error);
-+          retval = EXIT_FAILURE;
-+        }
-+      xfconf_shutdown ();
-+      return retval;
-+    }
- 
-   /* create question dialog */
-   dialog = gtk_message_dialog_new (NULL, 0, GTK_MESSAGE_QUESTION, GTK_BUTTONS_NONE,
-                                    _("Welcome to the first start of the panel"));
-   gtk_message_dialog_format_secondary_text (GTK_MESSAGE_DIALOG (dialog), "%s%s%s",
--      file != NULL ? _("Because the panel moved to a new system for storing the "
--                       "settings, it has to load a fresh initial configuration.") : "",
--      file != NULL ? " " : "",
-+      _("Because the panel moved to a new system for storing the "
-+        "settings, it has to load a fresh initial configuration."),
-+      " ",
-                      _("Choose below which setup you want for the first startup."));
-   gtk_window_set_title (GTK_WINDOW (dialog), _("Panel"));
-   gtk_window_set_icon_name (GTK_WINDOW (dialog), GTK_STOCK_PREFERENCES);
-@@ -88,26 +100,18 @@
- 
-   button = gtk_dialog_add_button (GTK_DIALOG (dialog), _("Migrate old config"), GTK_RESPONSE_OK);
-   gtk_widget_set_tooltip_text (button, _("Migrate the old 4.6 configuration to Xfconf"));
--  gtk_widget_set_sensitive (button, file != NULL);
--  if (file != NULL)
--    default_response = GTK_RESPONSE_OK;
-+  gtk_widget_set_sensitive (button, TRUE);
- 
-   button = gtk_dialog_add_button (GTK_DIALOG (dialog), _("Use default config"), GTK_RESPONSE_YES);
-   gtk_widget_set_tooltip_text (button, _("Load the default configuration"));
--  default_config_exists = g_file_test (DEFAULT_CONFIG, G_FILE_TEST_IS_REGULAR);
-   gtk_widget_set_sensitive (button, default_config_exists);
--  if (default_config_exists && file == NULL)
--    default_response = GTK_RESPONSE_YES;
+           button = gtk_dialog_add_button (GTK_DIALOG (dialog), _("Migrate old config"), GTK_RESPONSE_OK);
+           gtk_widget_set_tooltip_text (button, _("Migrate the old 4.6 configuration to Xfconf"));
+-          default_response = GTK_RESPONSE_OK;
+         }
+       else
+         {
+@@ -140,15 +140,9 @@
+         {
+           button = gtk_dialog_add_button (GTK_DIALOG (dialog), _("Use default config"), GTK_RESPONSE_YES);
+           gtk_widget_set_tooltip_text (button, _("Load the default configuration"));
 -
--  button = gtk_dialog_add_button (GTK_DIALOG (dialog), _("One empty panel"), GTK_RESPONSE_CANCEL);
--  gtk_widget_set_tooltip_text (button, _("Start with one empty panel"));
+-          if (default_response == GTK_RESPONSE_CANCEL)
+-            default_response = GTK_RESPONSE_YES;
+         }
  
--  gtk_dialog_set_default_response (GTK_DIALOG (dialog), default_response);
-+  gtk_dialog_set_default_response (GTK_DIALOG (dialog), GTK_RESPONSE_OK);
+-      button = gtk_dialog_add_button (GTK_DIALOG (dialog), _("One empty panel"), GTK_RESPONSE_CANCEL);
+-      gtk_widget_set_tooltip_text (button, _("Start with one empty panel"));
+-
+-      gtk_dialog_set_default_response (GTK_DIALOG (dialog), default_response);
++      gtk_dialog_set_default_response (GTK_DIALOG (dialog), GTK_RESPONSE_YES);
+       result = gtk_dialog_run (GTK_DIALOG (dialog));
+       gtk_widget_destroy (dialog);
  
-   result = gtk_dialog_run (GTK_DIALOG (dialog));
-   gtk_widget_destroy (dialog);
- 
--  if (result == GTK_RESPONSE_OK && file != NULL)
-+  if (result == GTK_RESPONSE_OK)
-     {
-       /* restore 4.6 config */
-       if (!migrate_46 (file, &error))
