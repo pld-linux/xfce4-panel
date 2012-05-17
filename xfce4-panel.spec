@@ -157,11 +157,6 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/xfce4/panel/plugins/libwindowmenu.so
 %{_datadir}/xfce4/panel
 %dir %{_datadir}/xfce4/panel-plugins
-%dir %{_datadir}/doc/xfce4-panel
-%{_datadir}/doc/xfce4-panel/README.gtkrc-2.0
-%dir %{_datadir}/doc/xfce4-panel/html
-%{_datadir}/doc/xfce4-panel/html/*.css
-%{_datadir}/doc/xfce4-panel/html/C
 %{_iconsdir}/hicolor/*/*/*
 %{_desktopdir}/*.desktop
 
@@ -172,7 +167,7 @@ rm -rf $RPM_BUILD_ROOT
 %files libs
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libxfce4panel-1.0.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libxfce4panel-1.0.so.3
+%attr(755,root,root) %ghost %{_libdir}/libxfce4panel-1.0.so.4
 
 %files devel
 %defattr(644,root,root,755)
