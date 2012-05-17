@@ -1,20 +1,20 @@
-%define		xfce_version	4.8.0
+%define		xfce_version	4.10.0
 Summary:	Next generation panel for Xfce
 Summary(pl.UTF-8):	Panel nowej generacji dla Xfce
 Name:		xfce4-panel
-Version:	4.8.6
-Release:	4
+Version:	4.10.0
+Release:	1
 License:	GPL v2, LGPL v2
 Group:		X11/Applications
-Source0:	http://archive.xfce.org/src/xfce/xfce4-panel/4.8/%{name}-%{version}.tar.bz2
-# Source0-md5:	9d7bf0503d5867c4044cef04bb5845b1
+Source0:	http://archive.xfce.org/src/xfce/xfce4-panel/4.10/%{name}-%{version}.tar.bz2
+# Source0-md5:	cf7351a4b952dbe3fc5ff509c68def33
 Patch0:		%{name}-no-empty-panel.patch
 URL:		http://www.xfce.org/projects/xfce4-panel
 BuildRequires:	dbus-glib-devel >= 0.73
 BuildRequires:	docbook-dtd412-xml
 BuildRequires:	docbook-style-xsl
-BuildRequires:	exo-devel >= 0.6.0
-BuildRequires:	garcon-devel >= 0.1.5
+BuildRequires:	exo-devel >= 0.8.0
+BuildRequires:	garcon-devel >= 0.2.0
 BuildRequires:	gettext-devel
 BuildRequires:	glib2-devel >= 1:2.18.0
 BuildRequires:	gtk+2-devel >= 2:2.14.0
@@ -92,7 +92,7 @@ Pliki nagłówkowe do budowania wtyczek panelu Xfce.
 
 %prep
 %setup -q
-%patch0 -p1
+#%patch0 -p1
 
 %build
 %configure \
