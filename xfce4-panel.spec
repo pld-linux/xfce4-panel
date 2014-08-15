@@ -1,13 +1,13 @@
-%define		xfce_version	4.10.0
+%define		xfce_version	4.11.0
 Summary:	Next generation panel for Xfce
 Summary(pl.UTF-8):	Panel nowej generacji dla Xfce
 Name:		xfce4-panel
-Version:	4.10.0
-Release:	4
+Version:	4.11.1
+Release:	1
 License:	GPL v2, LGPL v2
 Group:		X11/Applications
-Source0:	http://archive.xfce.org/src/xfce/xfce4-panel/4.10/%{name}-%{version}.tar.bz2
-# Source0-md5:	cf7351a4b952dbe3fc5ff509c68def33
+Source0:	http://archive.xfce.org/src/xfce/xfce4-panel/4.11/%{name}-%{version}.tar.bz2
+# Source0-md5:	21e056bdfb7a6b4d70e4ded619b2a88d
 Patch0:		%{name}-no-empty-panel.patch
 URL:		http://www.xfce.org/projects/xfce4-panel
 BuildRequires:	dbus-glib-devel >= 0.73
@@ -28,7 +28,8 @@ BuildRequires:	libxslt-progs
 BuildRequires:	pkgconfig >= 1:0.9.0
 BuildRequires:	rpmbuild(macros) >= 1.601
 BuildRequires:	xfce4-dev-tools >= %{xfce_version}
-BuildRequires:	xfconf-devel >= %{xfce_version}
+#BuildRequires:	xfconf-devel >= %{xfce_version}
+BuildRequires:	xfconf-devel >= 4.10.0
 Requires:	%{name}-libs = %{version}-%{release}
 Requires:	gtk-update-icon-cache
 Requires:	hicolor-icon-theme
@@ -141,7 +142,7 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_libdir}/xfce4
 %dir %{_libdir}/xfce4/panel
 %attr(755,root,root) %{_libdir}/xfce4/panel/migrate
-%attr(755,root,root) %{_libdir}/xfce4/panel/wrapper
+%attr(755,root,root) %{_libdir}/xfce4/panel/wrapper-1.0
 %dir %{_libdir}/xfce4/panel-plugins
 %dir %{_libdir}/xfce4/panel/plugins
 %attr(755,root,root) %{_libdir}/xfce4/panel/plugins/libactions.so
