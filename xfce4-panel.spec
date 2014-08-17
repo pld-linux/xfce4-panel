@@ -3,7 +3,7 @@ Summary:	Next generation panel for Xfce
 Summary(pl.UTF-8):	Panel nowej generacji dla Xfce
 Name:		xfce4-panel
 Version:	4.11.1
-Release:	1
+Release:	2
 License:	GPL v2, LGPL v2
 Group:		X11/Applications
 Source0:	http://archive.xfce.org/src/xfce/xfce4-panel/4.11/%{name}-%{version}.tar.bz2
@@ -18,6 +18,7 @@ BuildRequires:	garcon-devel >= 0.2.0
 BuildRequires:	gettext-devel
 BuildRequires:	glib2-devel >= 1:2.18.0
 BuildRequires:	gtk+2-devel >= 2:2.14.0
+BuildRequires:	gtk+3-devel
 BuildRequires:	gtk-doc >= 1.9
 BuildRequires:	gtk-doc-automake
 BuildRequires:	intltool >= 0.35.0
@@ -100,7 +101,8 @@ Pliki nagłówkowe do budowania wtyczek panelu Xfce.
 	--disable-static \
 	--enable-gtk-doc \
 	--with-html-dir=%{_gtkdocdir} \
-	--disable-silent-rules
+	--disable-silent-rules \
+	--enable-gtk3
 
 %{__make}
 
@@ -143,6 +145,7 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_libdir}/xfce4/panel
 %attr(755,root,root) %{_libdir}/xfce4/panel/migrate
 %attr(755,root,root) %{_libdir}/xfce4/panel/wrapper-1.0
+%attr(755,root,root) %{_libdir}/xfce4/panel/wrapper-2.0
 %dir %{_libdir}/xfce4/panel-plugins
 %dir %{_libdir}/xfce4/panel/plugins
 %attr(755,root,root) %{_libdir}/xfce4/panel/plugins/libactions.so
@@ -169,9 +172,14 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libxfce4panel-1.0.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libxfce4panel-1.0.so.4
+%attr(755,root,root) %{_libdir}/libxfce4panel-2.0.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libxfce4panel-2.0.so.4
 
 %files devel
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libxfce4panel-1.0.so
+%attr(755,root,root) %{_libdir}/libxfce4panel-2.0.so
 %{_includedir}/xfce4/libxfce4panel-1.0
+%{_includedir}/xfce4/libxfce4panel-2.0
 %{_pkgconfigdir}/libxfce4panel-1.0.pc
+%{_pkgconfigdir}/libxfce4panel-2.0.pc
