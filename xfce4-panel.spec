@@ -16,7 +16,7 @@ BuildRequires:	docbook-style-xsl
 BuildRequires:	exo-devel >= 0.8.0
 BuildRequires:	garcon-devel >= 0.3.0
 BuildRequires:	garcon-gtk2-devel >= 0.3.0
-BuildRequires:	gettext-devel
+BuildRequires:	gettext-tools
 BuildRequires:	glib2-devel >= 1:2.18.0
 BuildRequires:	gtk+2-devel >= 2:2.14.0
 BuildRequires:	gtk+3-devel
