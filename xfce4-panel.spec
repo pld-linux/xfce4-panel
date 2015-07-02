@@ -3,7 +3,7 @@ Summary:	Next generation panel for Xfce
 Summary(pl.UTF-8):	Panel nowej generacji dla Xfce
 Name:		xfce4-panel
 Version:	4.12.0
-Release:	1
+Release:	2
 License:	GPL v2, LGPL v2
 Group:		X11/Applications
 Source0:	http://archive.xfce.org/src/xfce/xfce4-panel/4.12/%{name}-%{version}.tar.bz2
@@ -58,6 +58,9 @@ Summary:	Xfce panel API documentation
 Summary(pl.UTF-8):	Dokumentacja API panelu Xfce
 Group:		Documentation
 Requires:	gtk-doc-common
+%if "%{_rpmversion}" >= "5"
+BuildArch:	noarch
+%endif
 
 %description apidocs
 Xfce panel API documentation.
@@ -115,7 +118,7 @@ install -d $RPM_BUILD_ROOT{%{_libdir},%{_datadir}}/xfce4/panel-plugins
 
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/xfce4/panel/plugins/*.la
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/*.la
-%{__rm} -r $RPM_BUILD_ROOT%{_datadir}/locale/ur_PK
+%{__rm} -r $RPM_BUILD_ROOT%{_localedir}/ur_PK
 
 %find_lang %{name}
 
