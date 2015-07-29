@@ -3,7 +3,7 @@ Summary:	Next generation panel for Xfce
 Summary(pl.UTF-8):	Panel nowej generacji dla Xfce
 Name:		xfce4-panel
 Version:	4.12.0
-Release:	2
+Release:	3
 License:	GPL v2, LGPL v2
 Group:		X11/Applications
 Source0:	http://archive.xfce.org/src/xfce/xfce4-panel/4.12/%{name}-%{version}.tar.bz2
@@ -42,7 +42,6 @@ Suggests:	xfce-preferred-applications
 Obsoletes:	xfce4-iconbox
 Obsoletes:	xfce4-showdesktop-plugin
 Obsoletes:	xfce4-systray
-Obsoletes:	xfce4-taskbar-plugin
 Obsoletes:	xfce4-themes
 Obsoletes:	xfce4-windowlist-plugin
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
