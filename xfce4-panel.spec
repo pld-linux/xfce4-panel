@@ -13,7 +13,7 @@ URL:		http://www.xfce.org/projects/xfce4-panel
 BuildRequires:	dbus-glib-devel >= 0.73
 BuildRequires:	docbook-dtd412-xml
 BuildRequires:	docbook-style-xsl
-BuildRequires:	exo-devel >= 0.8.0
+BuildRequires:	exo-devel >= 0.12.0
 BuildRequires:	garcon-devel >= 0.4.0
 BuildRequires:	garcon-gtk2-devel >= 0.6.1
 BuildRequires:	garcon-gtk3-devel >= 0.6.1
@@ -25,7 +25,7 @@ BuildRequires:	gtk+3-devel
 BuildRequires:	gtk-doc >= 1.9
 BuildRequires:	gtk-doc-automake
 BuildRequires:	intltool >= 0.35.0
-BuildRequires:	libwnck2-devel >= 2.22.0
+BuildRequires:	libwnck-devel
 BuildRequires:	libxfce4ui-devel >= %{xfce_version}
 BuildRequires:	libxfce4util-devel >= %{xfce_version}
 BuildRequires:	libxslt-progs
@@ -170,7 +170,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files apidocs
 %defattr(644,root,root,755)
-%{_gtkdocdir}/libxfce4panel-1.0
+%{_gtkdocdir}/libxfce4panel-2.0
 
 %files libs
 %defattr(644,root,root,755)
@@ -178,6 +178,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %ghost %{_libdir}/libxfce4panel-1.0.so.4
 %attr(755,root,root) %{_libdir}/libxfce4panel-2.0.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libxfce4panel-2.0.so.4
+%{_libdir}/girepository-1.0/libxfce4panel-2.0.typelib
 
 %files devel
 %defattr(644,root,root,755)
@@ -187,3 +188,4 @@ rm -rf $RPM_BUILD_ROOT
 %{_includedir}/xfce4/libxfce4panel-2.0
 %{_pkgconfigdir}/libxfce4panel-1.0.pc
 %{_pkgconfigdir}/libxfce4panel-2.0.pc
+%{_datadir}/gir-1.0/libxfce4panel-2.0.gir
