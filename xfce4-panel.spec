@@ -2,14 +2,12 @@
 Summary:	Next generation panel for Xfce
 Summary(pl.UTF-8):	Panel nowej generacji dla Xfce
 Name:		xfce4-panel
-Version:	4.13.3
-Release:	0.2
+Version:	4.13.5
+Release:	1
 License:	GPL v2, LGPL v2
 Group:		X11/Applications
 Source0:	http://archive.xfce.org/src/xfce/xfce4-panel/4.13/%{name}-%{version}.tar.bz2
-# Source0-md5:	0ccb448e3792949eb0ae9db8dc22789b
-Patch0:		%{name}-no-empty-panel.patch
-Patch100:	git.patch
+# Source0-md5:	376e360fb87095edaea7df8ca34fe6a7
 URL:		http://www.xfce.org/projects/xfce4-panel
 BuildRequires:	dbus-glib-devel >= 0.73
 BuildRequires:	docbook-dtd412-xml
@@ -99,8 +97,6 @@ Pliki nagłówkowe do budowania wtyczek panelu Xfce.
 
 %prep
 %setup -q
-%patch0 -p1
-%patch100 -p1
 
 %build
 %configure \
@@ -122,6 +118,7 @@ install -d $RPM_BUILD_ROOT{%{_libdir},%{_datadir}}/xfce4/panel-plugins
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/xfce4/panel/plugins/*.la
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/*.la
 %{__rm} -r $RPM_BUILD_ROOT%{_localedir}/ur_PK
+%{__rm} -r $RPM_BUILD_ROOT%{_localedir}/ie
 
 %find_lang %{name}
 
