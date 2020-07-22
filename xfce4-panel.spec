@@ -2,12 +2,12 @@
 Summary:	Next generation panel for Xfce
 Summary(pl.UTF-8):	Panel nowej generacji dla Xfce
 Name:		xfce4-panel
-Version:	4.14.1
+Version:	4.14.4
 Release:	1
 License:	GPL v2, LGPL v2
 Group:		X11/Applications
 Source0:	http://archive.xfce.org/src/xfce/xfce4-panel/4.14/%{name}-%{version}.tar.bz2
-# Source0-md5:	3323588f1c18f04891e013243da1e355
+# Source0-md5:	76efdbf7fb461f3058919c1309da67ca
 Patch0:		fallback-icons.patch
 URL:		http://www.xfce.org/projects/xfce4-panel
 BuildRequires:	dbus-glib-devel >= 0.73
@@ -31,6 +31,7 @@ BuildRequires:	libxfce4util-devel >= %{xfce_version}
 BuildRequires:	libxslt-progs
 BuildRequires:	pkgconfig >= 1:0.9.0
 BuildRequires:	rpmbuild(macros) >= 1.601
+BuildRequires:	vala
 BuildRequires:	xfce4-dev-tools >= 4.12.0
 BuildRequires:	xfconf-devel >= %{xfce_version}
 Requires:	%{name}-libs = %{version}-%{release}
@@ -96,6 +97,19 @@ Header files for building Xfce panel plugins.
 %description devel -l pl.UTF-8
 Pliki nagłówkowe do budowania wtyczek panelu Xfce.
 
+%package -n vala-xfce4-panel
+Summary:        Vala API for Xfce panel
+Summary(pl.UTF-8):      API j~Yzyka Vala do panelu Xfce
+Group:          Development/Libraries
+Requires:       %{name}-devel = %{version}-%{release}
+Requires:       vala
+
+%description -n vala-xfce4-panel
+Vala API for Xfce panel.
+
+%description -n vala-xfce4-panel -l pl.UTF-8
+API j~Yzyka Vala ls panelu Xfce.
+
 %prep
 %setup -q
 %patch0 -p1
@@ -121,6 +135,7 @@ install -d $RPM_BUILD_ROOT{%{_libdir},%{_datadir}}/xfce4/panel-plugins
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/*.la
 %{__rm} -r $RPM_BUILD_ROOT%{_localedir}/ur_PK
 %{__rm} -r $RPM_BUILD_ROOT%{_localedir}/ie
+%{__rm} -r $RPM_BUILD_ROOT%{_localedir}/fa_IR
 # unify
 %{__mv} $RPM_BUILD_ROOT%{_localedir}/{hy_AM,hy}
 
@@ -192,3 +207,8 @@ rm -rf $RPM_BUILD_ROOT
 %{_pkgconfigdir}/libxfce4panel-1.0.pc
 %{_pkgconfigdir}/libxfce4panel-2.0.pc
 %{_datadir}/gir-1.0/libxfce4panel-2.0.gir
+
+%files -n vala-xfce4-panel
+%defattr(644,root,root,755)
+%{_datadir}/vala/vapi/libxfce4panel-2.0.deps
+%{_datadir}/vala/vapi/libxfce4panel-2.0.vapi
