@@ -98,17 +98,17 @@ Header files for building Xfce panel plugins.
 Pliki nagłówkowe do budowania wtyczek panelu Xfce.
 
 %package -n vala-xfce4-panel
-Summary:        Vala API for Xfce panel
-Summary(pl.UTF-8):      API j~Yzyka Vala do panelu Xfce
-Group:          Development/Libraries
-Requires:       %{name}-devel = %{version}-%{release}
-Requires:       vala
+Summary:	Vala API for Xfce panel
+Summary(pl.UTF-8):	API języka Vala do panelu Xfce
+Group:		Development/Libraries
+Requires:	%{name}-devel = %{version}-%{release}
+Requires:	vala
 
 %description -n vala-xfce4-panel
 Vala API for Xfce panel.
 
 %description -n vala-xfce4-panel -l pl.UTF-8
-API j~Yzyka Vala ls panelu Xfce.
+API języka Vala ls panelu Xfce.
 
 %prep
 %setup -q
