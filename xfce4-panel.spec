@@ -1,13 +1,13 @@
-%define		xfce_version	4.13.0
+%define		xfce_version	4.16.0
 Summary:	Next generation panel for Xfce
 Summary(pl.UTF-8):	Panel nowej generacji dla Xfce
 Name:		xfce4-panel
-Version:	4.14.4
+Version:	4.16.0
 Release:	1
 License:	GPL v2, LGPL v2
 Group:		X11/Applications
-Source0:	http://archive.xfce.org/src/xfce/xfce4-panel/4.14/%{name}-%{version}.tar.bz2
-# Source0-md5:	76efdbf7fb461f3058919c1309da67ca
+Source0:	http://archive.xfce.org/src/xfce/xfce4-panel/4.16/%{name}-%{version}.tar.bz2
+# Source0-md5:	19e160296e6f79ae27266a38a499ef3b
 Patch0:		fallback-icons.patch
 URL:		http://www.xfce.org/projects/xfce4-panel
 BuildRequires:	dbus-glib-devel >= 0.73
@@ -15,12 +15,10 @@ BuildRequires:	docbook-dtd412-xml
 BuildRequires:	docbook-style-xsl
 BuildRequires:	exo-devel >= 0.12.0
 BuildRequires:	garcon-devel >= 0.4.0
-BuildRequires:	garcon-gtk2-devel >= 0.6.1
 BuildRequires:	garcon-gtk3-devel >= 0.6.1
 BuildRequires:	gettext-tools
-BuildRequires:	glib2-devel >= 1:2.30.0
+BuildRequires:	glib2-devel >= 1:2.50.0
 BuildRequires:	gobject-introspection-devel
-BuildRequires:	gtk+2-devel >= 2:2.24.0
 BuildRequires:	gtk+3-devel
 BuildRequires:	gtk-doc >= 1.9
 BuildRequires:	gtk-doc-automake
@@ -86,8 +84,8 @@ Summary:	Header files for building Xfce panel plugins
 Summary(pl.UTF-8):	Pliki nagłówkowe do budowania wtyczek panelu Xfce
 Group:		X11/Development/Libraries
 Requires:	%{name}-libs = %{version}-%{release}
-Requires:	glib2-devel >= 1:2.30.0
-Requires:	gtk+2-devel >= 2:2.24.0
+Requires:	glib2-devel >= 1:2.50.0
+Requires:	gtk+3-devel
 Requires:	libxfce4ui-devel >= %{xfce_version}
 Requires:	libxfce4util-devel >= %{xfce_version}
 
@@ -112,7 +110,7 @@ API języka Vala ls panelu Xfce.
 
 %prep
 %setup -q
-%patch0 -p1
+#%patch0 -p1
 
 %build
 %configure \
@@ -133,9 +131,7 @@ install -d $RPM_BUILD_ROOT{%{_libdir},%{_datadir}}/xfce4/panel-plugins
 
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/xfce4/panel/plugins/*.la
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/*.la
-%{__rm} -r $RPM_BUILD_ROOT%{_localedir}/ur_PK
-%{__rm} -r $RPM_BUILD_ROOT%{_localedir}/ie
-%{__rm} -r $RPM_BUILD_ROOT%{_localedir}/fa_IR
+%{__rm} -r $RPM_BUILD_ROOT%{_localedir}/{hye,ie,ur_PK}
 # unify
 %{__mv} $RPM_BUILD_ROOT%{_localedir}/{hy_AM,hy}
 
@@ -155,18 +151,16 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
-%doc AUTHORS ChangeLog NEWS README
+%doc AUTHORS ChangeLog NEWS
 %attr(755,root,root) %{_bindir}/xfce4-panel
 %attr(755,root,root) %{_bindir}/xfce4-popup-applicationsmenu
 %attr(755,root,root) %{_bindir}/xfce4-popup-directorymenu
 %attr(755,root,root) %{_bindir}/xfce4-popup-windowmenu
-
 %dir %{_sysconfdir}/xdg/xfce4/panel
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/xdg/xfce4/panel/default.xml
 %dir %{_libdir}/xfce4
 %dir %{_libdir}/xfce4/panel
 %attr(755,root,root) %{_libdir}/xfce4/panel/migrate
-%attr(755,root,root) %{_libdir}/xfce4/panel/wrapper-1.0
 %attr(755,root,root) %{_libdir}/xfce4/panel/wrapper-2.0
 %dir %{_libdir}/xfce4/panel-plugins
 %dir %{_libdir}/xfce4/panel/plugins
@@ -192,21 +186,16 @@ rm -rf $RPM_BUILD_ROOT
 
 %files libs
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/libxfce4panel-1.0.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libxfce4panel-1.0.so.4
 %attr(755,root,root) %{_libdir}/libxfce4panel-2.0.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libxfce4panel-2.0.so.4
-%{_libdir}/girepository-1.0/libxfce4panel-2.0.typelib
+%{_libdir}/girepository-1.0/Libxfce4panel-2.0.typelib
 
 %files devel
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/libxfce4panel-1.0.so
 %attr(755,root,root) %{_libdir}/libxfce4panel-2.0.so
-%{_includedir}/xfce4/libxfce4panel-1.0
 %{_includedir}/xfce4/libxfce4panel-2.0
-%{_pkgconfigdir}/libxfce4panel-1.0.pc
 %{_pkgconfigdir}/libxfce4panel-2.0.pc
-%{_datadir}/gir-1.0/libxfce4panel-2.0.gir
+%{_datadir}/gir-1.0/Libxfce4panel-2.0.gir
 
 %files -n vala-xfce4-panel
 %defattr(644,root,root,755)
