@@ -187,12 +187,12 @@ rm -rf $RPM_BUILD_ROOT
 %files libs
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libxfce4panel-2.0.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libxfce4panel-2.0.so.4
+%ghost %{_libdir}/libxfce4panel-2.0.so.4
 %{_libdir}/girepository-1.0/Libxfce4panel-2.0.typelib
 
 %files devel
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/libxfce4panel-2.0.so
+%{_libdir}/libxfce4panel-2.0.so
 %{_includedir}/xfce4/libxfce4panel-2.0
 %{_pkgconfigdir}/libxfce4panel-2.0.pc
 %{_datadir}/gir-1.0/Libxfce4panel-2.0.gir
