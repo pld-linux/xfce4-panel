@@ -2,12 +2,12 @@
 Summary:	Next generation panel for Xfce
 Summary(pl.UTF-8):	Panel nowej generacji dla Xfce
 Name:		xfce4-panel
-Version:	4.16.1
+Version:	4.16.2
 Release:	1
 License:	GPL v2, LGPL v2
 Group:		X11/Applications
 Source0:	http://archive.xfce.org/src/xfce/xfce4-panel/4.16/%{name}-%{version}.tar.bz2
-# Source0-md5:	4c29473654958e1d309fcf919fa9148d
+# Source0-md5:	0629051c4d6d640e723ebe876a27c826
 Patch0:		fallback-icons.patch
 URL:		http://www.xfce.org/projects/xfce4-panel
 BuildRequires:	dbus-glib-devel >= 0.73
@@ -40,11 +40,11 @@ Requires:	hicolor-icon-theme
 Requires:	tango-icon-theme
 Requires:	xfce4-dirs >= 4.6
 Suggests:	xfce-preferred-applications
-Obsoletes:	xfce4-iconbox
-Obsoletes:	xfce4-showdesktop-plugin
-Obsoletes:	xfce4-systray
-Obsoletes:	xfce4-themes
-Obsoletes:	xfce4-windowlist-plugin
+Obsoletes:	xfce4-iconbox < 4.3
+Obsoletes:	xfce4-showdesktop-plugin < 0.5
+Obsoletes:	xfce4-systray < 4.3
+Obsoletes:	xfce4-themes < 4.1
+Obsoletes:	xfce4-windowlist-plugin < 0.2
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
