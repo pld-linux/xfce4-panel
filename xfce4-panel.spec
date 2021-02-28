@@ -58,9 +58,7 @@ Summary:	Xfce panel API documentation
 Summary(pl.UTF-8):	Dokumentacja API panelu Xfce
 Group:		Documentation
 Requires:	gtk-doc-common
-%if "%{_rpmversion}" >= "5"
 BuildArch:	noarch
-%endif
 
 %description apidocs
 Xfce panel API documentation.
