@@ -2,12 +2,12 @@
 Summary:	Next generation panel for Xfce
 Summary(pl.UTF-8):	Panel nowej generacji dla Xfce
 Name:		xfce4-panel
-Version:	4.16.2
+Version:	4.16.3
 Release:	1
 License:	GPL v2, LGPL v2
 Group:		X11/Applications
 Source0:	http://archive.xfce.org/src/xfce/xfce4-panel/4.16/%{name}-%{version}.tar.bz2
-# Source0-md5:	0629051c4d6d640e723ebe876a27c826
+# Source0-md5:	7a1d1d405e15240c3bbcfa56c4f32efc
 Patch0:		fallback-icons.patch
 URL:		http://www.xfce.org/projects/xfce4-panel
 BuildRequires:	dbus-glib-devel >= 0.73
@@ -115,8 +115,7 @@ API języka Vala ls panelu Xfce.
 	--disable-static \
 	--enable-gtk-doc \
 	--with-html-dir=%{_gtkdocdir} \
-	--disable-silent-rules \
-	--enable-gtk3
+	--disable-silent-rules 
 
 %{__make}
 
