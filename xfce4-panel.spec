@@ -30,6 +30,7 @@ BuildRequires:	libxslt-progs
 BuildRequires:	pkgconfig >= 1:0.9.0
 BuildRequires:	rpmbuild(macros) >= 1.601
 BuildRequires:	vala
+BuildRequires:	vala-libxfce4util >= %{xfce_version}
 BuildRequires:	xfce4-dev-tools >= 4.12.0
 BuildRequires:	xfconf-devel >= %{xfce_version}
 Requires:	%{name}-libs = %{version}-%{release}
@@ -115,7 +116,7 @@ API języka Vala ls panelu Xfce.
 	--disable-static \
 	--enable-gtk-doc \
 	--with-html-dir=%{_gtkdocdir} \
-	--disable-silent-rules 
+	--disable-silent-rules
 
 %{__make}
 
