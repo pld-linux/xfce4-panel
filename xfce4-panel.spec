@@ -2,12 +2,12 @@
 Summary:	Next generation panel for Xfce
 Summary(pl.UTF-8):	Panel nowej generacji dla Xfce
 Name:		xfce4-panel
-Version:	4.16.4
+Version:	4.16.5
 Release:	1
 License:	GPL v2, LGPL v2
 Group:		X11/Applications
 Source0:	http://archive.xfce.org/src/xfce/xfce4-panel/4.16/%{name}-%{version}.tar.bz2
-# Source0-md5:	5f1018798549a44559186f06bbf3163c
+# Source0-md5:	d55c4f8f6c31616361e75ef6953e023f
 Patch0:		fallback-icons.patch
 URL:		http://www.xfce.org/projects/xfce4-panel
 BuildRequires:	dbus-glib-devel >= 0.73
