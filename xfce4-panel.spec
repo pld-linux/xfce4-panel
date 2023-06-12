@@ -8,8 +8,8 @@ License:	GPL v2, LGPL v2
 Group:		X11/Applications
 Source0:	https://archive.xfce.org/src/xfce/xfce4-panel/4.18/%{name}-%{version}.tar.bz2
 # Source0-md5:	4e0d462fdeda0efaba79b4845fa49c10
-URL:		https://www.xfce.org/projects/xfce4-panel
-BuildRequires:	dbus-glib-devel >= 0.73
+URL:		https://docs.xfce.org/xfce/xfce4-panel/start
+BuildRequires:	cairo-devel >= 1.16.0
 BuildRequires:	docbook-dtd412-xml
 BuildRequires:	docbook-style-xsl
 BuildRequires:	exo-devel >= 0.12.0
@@ -18,23 +18,28 @@ BuildRequires:	garcon-gtk3-devel >= 4.18.0
 BuildRequires:	gettext-tools
 BuildRequires:	glib2-devel >= 1:2.66.0
 BuildRequires:	gobject-introspection-devel >= 1.66.0
-BuildRequires:	gtk+3-devel
+BuildRequires:	gtk+3-devel >= 3.24.0
 BuildRequires:	gtk-doc >= 1.9
-BuildRequires:	gtk-doc-automake
+BuildRequires:	gtk-doc-automake >= 1.9
 BuildRequires:	intltool >= 0.35.0
-BuildRequires:	libwnck-devel
+BuildRequires:	libdbusmenu-gtk3-devel >= 16.04.0
+BuildRequires:	libwnck-devel >= 3.0
 BuildRequires:	libxfce4ui-devel >= %{xfce_version}
 BuildRequires:	libxfce4util-devel >= %{xfce_version}
 BuildRequires:	libxslt-progs
 BuildRequires:	pkgconfig >= 1:0.9.0
+BuildRequires:	rpm-build >= 4.6
 BuildRequires:	rpmbuild(macros) >= 2.000
 BuildRequires:	vala
 BuildRequires:	vala-libxfce4util >= %{xfce_version}
 BuildRequires:	xfce4-dev-tools >= 4.18.0
 BuildRequires:	xfconf-devel >= %{xfce_version}
+BuildRequires:	xorg-lib-libX11-devel
+Requires(post,postun):	gtk-update-icon-cache
 Requires:	%{name}-libs = %{version}-%{release}
-Requires:	gtk-update-icon-cache
+Requires:	exo >= 0.12.0
 Requires:	hicolor-icon-theme
+Requires:	libwnck >= 3.0
 # NOTE: xfce4-icon-theme doesn't match XDG specification.
 #       Use Tango as a default icon theme.
 Requires:	tango-icon-theme
@@ -70,6 +75,10 @@ Dokumentacja API panelu Xfce.
 Summary:	xfce4panel library
 Summary(pl.UTF-8):	Biblioteka xfce4panel
 Group:		X11/Development/Libraries
+Requires:	cairo >= 1.16.0
+Requires:	glib2 >= 1:2.66.0
+Requires:	gtk+3 >= 3.24.0
+Requires:	libxfce4util >= %{xfce_version}
 
 %description libs
 This package contains xfce4panel library.
@@ -83,7 +92,7 @@ Summary(pl.UTF-8):	Pliki nagłówkowe do budowania wtyczek panelu Xfce
 Group:		X11/Development/Libraries
 Requires:	%{name}-libs = %{version}-%{release}
 Requires:	glib2-devel >= 1:2.66.0
-Requires:	gtk+3-devel
+Requires:	gtk+3-devel >= 3.24.0
 Requires:	libxfce4ui-devel >= %{xfce_version}
 Requires:	libxfce4util-devel >= %{xfce_version}
 
@@ -99,6 +108,7 @@ Summary(pl.UTF-8):	API języka Vala do panelu Xfce
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 Requires:	vala
+Requires:	vala-libxfce4util >= %{xfce_version}
 
 %description -n vala-xfce4-panel
 Vala API for Xfce panel.
@@ -111,10 +121,10 @@ API języka Vala ls panelu Xfce.
 
 %build
 %configure \
-	--disable-static \
 	--enable-gtk-doc \
-	--with-html-dir=%{_gtkdocdir} \
-	--disable-silent-rules
+	--disable-silent-rules \
+	--disable-static \
+	--with-html-dir=%{_gtkdocdir}
 
 %{__make}
 
@@ -126,10 +136,15 @@ install -d $RPM_BUILD_ROOT{%{_libdir},%{_datadir}}/xfce4/panel-plugins
 	DESTDIR=$RPM_BUILD_ROOT
 
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/xfce4/panel/plugins/*.la
+# obsoleted by pkg-config
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/*.la
-%{__rm} -r $RPM_BUILD_ROOT%{_localedir}/{hye,ie,ur_PK}
+
 # unify
 %{__mv} $RPM_BUILD_ROOT%{_localedir}/{hy_AM,hy}
+# duplicate of ur
+%{__rm} -r $RPM_BUILD_ROOT%{_localedir}/ur_PK
+# not supported by glibc (as of 2.37)
+%{__rm} -r $RPM_BUILD_ROOT%{_localedir}/{hye,ie}
 
 %find_lang %{name}
 
@@ -173,8 +188,10 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/xfce4/panel/plugins/libwindowmenu.so
 %{_datadir}/xfce4/panel
 %dir %{_datadir}/xfce4/panel-plugins
-%{_iconsdir}/hicolor/*/*/*
-%{_desktopdir}/*.desktop
+%{_iconsdir}/hicolor/*x*/apps/org.xfce.panel*.png
+%{_iconsdir}/hicolor/scalable/apps/org.xfce.panel*.svg
+%{_desktopdir}/panel-desktop-handler.desktop
+%{_desktopdir}/panel-preferences.desktop
 
 %files apidocs
 %defattr(644,root,root,755)
