@@ -2,12 +2,12 @@
 Summary:	Next generation panel for Xfce
 Summary(pl.UTF-8):	Panel nowej generacji dla Xfce
 Name:		xfce4-panel
-Version:	4.18.4
+Version:	4.18.5
 Release:	1
 License:	GPL v2, LGPL v2
 Group:		X11/Applications
 Source0:	https://archive.xfce.org/src/xfce/xfce4-panel/4.18/%{name}-%{version}.tar.bz2
-# Source0-md5:	4e0d462fdeda0efaba79b4845fa49c10
+# Source0-md5:	ca7298800e6499ebf79fe37a8bfd3360
 URL:		https://docs.xfce.org/xfce/xfce4-panel/start
 BuildRequires:	cairo-devel >= 1.16.0
 BuildRequires:	docbook-dtd412-xml
