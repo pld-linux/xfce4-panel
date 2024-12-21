@@ -15,13 +15,13 @@ BuildRequires:	docbook-style-xsl
 BuildRequires:	exo-devel >= 0.12.0
 BuildRequires:	garcon-devel >= 4.20.0
 BuildRequires:	garcon-gtk3-devel >= 4.20.0
-BuildRequires:	gettext-tools
+BuildRequires:	gettext-tools >= 0.19.8
 BuildRequires:	glib2-devel >= 1:2.72.0
-BuildRequires:	gobject-introspection-devel >= 1.66.0
+BuildRequires:	gobject-introspection-devel >= 1.72.0
 BuildRequires:	gtk+3-devel >= 3.24.0
 BuildRequires:	gtk-doc >= 1.9
 BuildRequires:	gtk-doc-automake >= 1.9
-BuildRequires:	intltool >= 0.35.0
+BuildRequires:	gtk-layer-shell-devel >= 0.7.0
 BuildRequires:	libdbusmenu-gtk3-devel >= 16.04.0
 BuildRequires:	libwnck-devel >= 3.0
 BuildRequires:	libxfce4ui-devel >= %{xfce_version}
@@ -33,16 +33,26 @@ BuildRequires:	rpm-build >= 4.6
 BuildRequires:	rpmbuild(macros) >= 2.000
 BuildRequires:	vala
 BuildRequires:	vala-libxfce4util >= %{xfce_version}
+BuildRequires:	wayland-devel >= 1.20
 BuildRequires:	xfce4-dev-tools >= 4.20.0
 BuildRequires:	xfconf-devel >= %{xfce_version}
-BuildRequires:	xorg-lib-libX11-devel
+BuildRequires:	xorg-lib-libX11-devel >= 1.6.7
+BuildRequires:	xorg-lib-libXext-devel >= 1.0.0
 Requires(post,postun):	gtk-update-icon-cache
 Requires:	%{name}-libs = %{version}-%{release}
 Requires:	adwaita-icon-theme
+Requires:	libdbusmenu-gtk3 >= 16.04.0
 Requires:	exo >= 0.12.0
+Requires:	garcon >= 4.20.0
+Requires:	garcon-gtk3 >= 4.20.0
+Requires:	gtk-layer-shell >= 0.7.0
 Requires:	hicolor-icon-theme
 Requires:	libwnck >= 3.0
+Requires:	wayland >= 1.20
 Requires:	xfce4-dirs >= 4.6
+Requires:	xfconf >= %{xfce_version}
+Requires:	xorg-lib-libX11 >= 1.6.7
+Requires:	xorg-lib-libXext >= 1.0.0
 Suggests:	adwaita-icon-theme-legacy
 Suggests:	xfce-preferred-applications
 Obsoletes:	xfce4-iconbox < 4.3
