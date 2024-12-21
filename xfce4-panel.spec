@@ -1,22 +1,22 @@
-%define		xfce_version	4.18.0
+%define		xfce_version	4.20.0
 Summary:	Next generation panel for Xfce
 Summary(pl.UTF-8):	Panel nowej generacji dla Xfce
 Name:		xfce4-panel
-Version:	4.18.6
+Version:	4.20.0
 Release:	1
 License:	GPL v2, LGPL v2
 Group:		X11/Applications
-Source0:	https://archive.xfce.org/src/xfce/xfce4-panel/4.18/%{name}-%{version}.tar.bz2
-# Source0-md5:	caddd05c820f0fbae9d2acc5218fc7ed
+Source0:	https://archive.xfce.org/src/xfce/xfce4-panel/4.20/%{name}-%{version}.tar.bz2
+# Source0-md5:	6806cfc1da969b56fba8efb3cf729a99
 URL:		https://docs.xfce.org/xfce/xfce4-panel/start
 BuildRequires:	cairo-devel >= 1.16.0
 BuildRequires:	docbook-dtd412-xml
 BuildRequires:	docbook-style-xsl
 BuildRequires:	exo-devel >= 0.12.0
-BuildRequires:	garcon-devel >= 4.18.0
-BuildRequires:	garcon-gtk3-devel >= 4.18.0
+BuildRequires:	garcon-devel >= 4.20.0
+BuildRequires:	garcon-gtk3-devel >= 4.20.0
 BuildRequires:	gettext-tools
-BuildRequires:	glib2-devel >= 1:2.66.0
+BuildRequires:	glib2-devel >= 1:2.72.0
 BuildRequires:	gobject-introspection-devel >= 1.66.0
 BuildRequires:	gtk+3-devel >= 3.24.0
 BuildRequires:	gtk-doc >= 1.9
@@ -26,24 +26,24 @@ BuildRequires:	libdbusmenu-gtk3-devel >= 16.04.0
 BuildRequires:	libwnck-devel >= 3.0
 BuildRequires:	libxfce4ui-devel >= %{xfce_version}
 BuildRequires:	libxfce4util-devel >= %{xfce_version}
+BuildRequires:	libxfce4windowing-devel >= %{xfce_version}
 BuildRequires:	libxslt-progs
 BuildRequires:	pkgconfig >= 1:0.9.0
 BuildRequires:	rpm-build >= 4.6
 BuildRequires:	rpmbuild(macros) >= 2.000
 BuildRequires:	vala
 BuildRequires:	vala-libxfce4util >= %{xfce_version}
-BuildRequires:	xfce4-dev-tools >= 4.18.0
+BuildRequires:	xfce4-dev-tools >= 4.20.0
 BuildRequires:	xfconf-devel >= %{xfce_version}
 BuildRequires:	xorg-lib-libX11-devel
 Requires(post,postun):	gtk-update-icon-cache
 Requires:	%{name}-libs = %{version}-%{release}
+Requires:	adwaita-icon-theme
 Requires:	exo >= 0.12.0
 Requires:	hicolor-icon-theme
 Requires:	libwnck >= 3.0
-# NOTE: xfce4-icon-theme doesn't match XDG specification.
-#       Use Tango as a default icon theme.
-Requires:	tango-icon-theme
 Requires:	xfce4-dirs >= 4.6
+Suggests:	adwaita-icon-theme-legacy
 Suggests:	xfce-preferred-applications
 Obsoletes:	xfce4-iconbox < 4.3
 Obsoletes:	xfce4-showdesktop-plugin < 0.5
@@ -76,7 +76,7 @@ Summary:	xfce4panel library
 Summary(pl.UTF-8):	Biblioteka xfce4panel
 Group:		X11/Development/Libraries
 Requires:	cairo >= 1.16.0
-Requires:	glib2 >= 1:2.66.0
+Requires:	glib2 >= 1:2.72.0
 Requires:	gtk+3 >= 3.24.0
 Requires:	libxfce4util >= %{xfce_version}
 
@@ -91,7 +91,7 @@ Summary:	Header files for building Xfce panel plugins
 Summary(pl.UTF-8):	Pliki nagłówkowe do budowania wtyczek panelu Xfce
 Group:		X11/Development/Libraries
 Requires:	%{name}-libs = %{version}-%{release}
-Requires:	glib2-devel >= 1:2.66.0
+Requires:	glib2-devel >= 1:2.72.0
 Requires:	gtk+3-devel >= 3.24.0
 Requires:	libxfce4ui-devel >= %{xfce_version}
 Requires:	libxfce4util-devel >= %{xfce_version}
