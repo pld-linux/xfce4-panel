@@ -2,12 +2,12 @@
 Summary:	Next generation panel for Xfce
 Summary(pl.UTF-8):	Panel nowej generacji dla Xfce
 Name:		xfce4-panel
-Version:	4.20.0
+Version:	4.20.2
 Release:	1
 License:	GPL v2, LGPL v2
 Group:		X11/Applications
 Source0:	https://archive.xfce.org/src/xfce/xfce4-panel/4.20/%{name}-%{version}.tar.bz2
-# Source0-md5:	6806cfc1da969b56fba8efb3cf729a99
+# Source0-md5:	99f9137cef2168eef6a4d96b58cfeec2
 URL:		https://docs.xfce.org/xfce/xfce4-panel/start
 BuildRequires:	cairo-devel >= 1.16.0
 BuildRequires:	docbook-dtd412-xml
@@ -26,7 +26,7 @@ BuildRequires:	libdbusmenu-gtk3-devel >= 16.04.0
 BuildRequires:	libwnck-devel >= 3.0
 BuildRequires:	libxfce4ui-devel >= %{xfce_version}
 BuildRequires:	libxfce4util-devel >= %{xfce_version}
-BuildRequires:	libxfce4windowing-devel >= %{xfce_version}
+BuildRequires:	libxfce4windowing-devel >= 4.20.1
 BuildRequires:	libxslt-progs
 BuildRequires:	pkgconfig >= 1:0.9.0
 BuildRequires:	rpm-build >= 4.6
